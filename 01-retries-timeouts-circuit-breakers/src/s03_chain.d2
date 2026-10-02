@@ -1,0 +1,21 @@
+vars: {
+  d2-config: {
+    pad: 40
+  }
+}
+style.fill: "#0B1020"
+(** -> **)[*].style: {stroke: "#5B7CBA"; font-color: "#8A9EC0"; stroke-width: 2}
+classes: {
+  svc: {style: {fill: "#131B30"; stroke: "#5B7CBA"; stroke-width: 2; font-color: "#E6EDF7"; border-radius: 10; font: mono}}
+  edge: {style: {fill: "#131B30"; stroke: "#4CC9F0"; stroke-width: 2; font-color: "#E6EDF7"; border-radius: 10; font: mono}}
+  db: {shape: cylinder; style: {fill: "#131B30"; stroke: "#B388FF"; stroke-width: 2; font-color: "#E6EDF7"; font: mono}}
+  state: {shape: circle; style: {fill: "#131B30"; stroke: "#5B7CBA"; stroke-width: 3; font-color: "#E6EDF7"; font: mono}}
+}
+direction: right
+users: Users {class: edge}
+checkout: Checkout {class: svc}
+payments: Payments {class: svc}
+db: Database {class: db}
+users -> checkout: request
+checkout -> payments: RPC
+payments -> db: query

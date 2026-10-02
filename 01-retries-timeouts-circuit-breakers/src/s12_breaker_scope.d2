@@ -1,0 +1,24 @@
+vars: {
+  d2-config: {
+    pad: 40
+  }
+}
+style.fill: "#0B1020"
+classes: {
+  svc: {style: {fill: "#131B30"; stroke: "#5B7CBA"; stroke-width: 2; font-color: "#E6EDF7"; border-radius: 10; font: mono}}
+  edge: {style: {fill: "#131B30"; stroke: "#4CC9F0"; stroke-width: 2; font-color: "#E6EDF7"; border-radius: 10; font: mono}}
+  db: {shape: cylinder; style: {fill: "#131B30"; stroke: "#B388FF"; stroke-width: 2; font-color: "#E6EDF7"; font: mono}}
+  state: {shape: circle; style: {fill: "#131B30"; stroke: "#5B7CBA"; stroke-width: 3; font-color: "#E6EDF7"; font: mono}}
+}
+(** -> **)[*].style: {stroke: "#5B7CBA"; font-color: "#8A9EC0"; stroke-width: 2}
+direction: right
+clients: Clients {class: edge}
+b1: Breaker shard-1 {class: svc}
+b2: Breaker shard-2 {class: svc}
+b3: Breaker shard-3 (OPEN) {class: svc; style.stroke: "#FF4D6D"}
+s1: shard 1 {class: db}
+s2: shard 2 {class: db}
+s3: shard 3 {class: db; style.stroke: "#FF4D6D"}
+clients -> b1 -> s1
+clients -> b2 -> s2
+clients -> b3 -> s3: "fail fast + fallback"
