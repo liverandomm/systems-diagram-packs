@@ -8,6 +8,14 @@ Format: `YYYY-MM-DD · file(s) · what changed · why / source · credit`
 
 - Nothing yet. Yours could be the first entry.
 
+## 2026-10-03 · mobile and consistency update
+
+- All diagrams: times are now 12-hour PDT with AM/PM (e.g. 12:38 AM), matching the narration. The two Monday items at 11:48 now say 11:48 PM.
+- `monday_policy.d2`: the footer reads "Channel recommendations (our opinion), based on AWS's summary". The old "[OPINION]" script tag is gone.
+- SVG and PNG@2x re-rendered.
+- Added `systems-drawn-02-diagram-pack.pdf`, the whole pack in one file for phones.
+- README restructured for small screens (lists instead of wide tables, with PNG/SVG/D2 links per diagram).
+
 ## 2026-10-03 · first release
 
 - Nine D2 diagrams (see README), SVG and PNG@2x renders, and `postmortem_oncall_checklist.md`.

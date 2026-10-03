@@ -8,26 +8,26 @@ h1: "1 · DNS race (DynamoDB)" {class: bad}
 h2: "2 · DWFM congestive collapse (EC2)" {class: warn}
 h3: "3 · NLB health-check flapping" {class: warn}
 r1: "what happens first" {class: note}
-a1: "23:48 delayed Enactor applies an old plan;\ncleanup deletes it → record has 0 IPs" {class: svc}
-b1: "23:48 lease checks fail; leases\ntime out over ~2.5 h (02:24)" {class: svc}
-c1: "05:30 new instances put in service\nbefore network state propagated" {class: svc}
+a1: "11:48 PM delayed Enactor applies an old plan;\ncleanup deletes it → record has 0 IPs" {class: svc}
+b1: "11:48 PM lease checks fail; leases\ntime out over ~2.5 h (2:24 AM)" {class: svc}
+c1: "5:30 AM new instances put in service\nbefore network state propagated" {class: svc}
 r2: "signal that detects it" {class: note}
-a2: "DNS answers with zero addresses (no error);\nsource identified 00:38" {class: svc}
+a2: "DNS answers with zero addresses (no error);\nsource identified 12:38 AM" {class: svc}
 b2: "launches answered\n'insufficient capacity'" {class: svc}
-c2: "06:52 monitoring detects\nhealth-check flapping" {class: svc}
+c2: "6:52 AM monitoring detects\nhealth-check flapping" {class: svc}
 r3: "shared resource that runs out" {class: note}
 a3: "the one regional endpoint record\n(the active plan)" {class: svc}
 b3: "DWFM time per lease vs. the timeout\n(queue of expiring work)" {class: svc}
 c3: "health-checker capacity →\nhealthy NLB capacity (multi-AZ)" {class: svc}
 r4: "what contains the spread" {class: note}
 a4: "manual DNS repair; DNS Planner +\nEnactor automation disabled worldwide" {class: ok}
-b4: "04:14 throttle incoming work +\nselective DWFM restarts" {class: ok}
-c4: "09:36 automatic AZ failover\ndisabled for NLB" {class: ok}
+b4: "4:14 AM throttle incoming work +\nselective DWFM restarts" {class: ok}
+c4: "9:36 AM automatic AZ failover\ndisabled for NLB" {class: ok}
 r5: "accepted trade-off" {class: note}
 a5: "no automated DNS updates until the\nfix (back on in all regions by 28 Oct)" {class: ext}
 b5: "many launches get\n'request limit exceeded'" {class: ext}
-c5: "no automatic failover\n09:36 → 14:09" {class: ext}
+c5: "no automatic failover\n9:36 AM → 2:09 PM" {class: ext}
 r6: "recovery without a second wave" {class: note}
-a6: "02:25 DNS restored; clients return\nas cached records expire" {class: svc}
-b6: "throttles relaxed gradually from 11:23;\nEC2 normal 13:50" {class: svc}
-c6: "failover re-enabled 14:09,\nafter EC2 recovered" {class: svc}
+a6: "2:25 AM DNS restored; clients return\nas cached records expire" {class: svc}
+b6: "throttles relaxed gradually from 11:23 AM;\nEC2 normal 1:50 PM" {class: svc}
+c6: "failover re-enabled 2:09 PM,\nafter EC2 recovered" {class: svc}

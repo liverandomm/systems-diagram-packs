@@ -5,33 +5,33 @@ direction: right
 periods: "Periods of impact (PDT)" {
   class: boundary
   direction: down
-  api: "EC2 API errors (EC2 section)\n23:48 → 02:25 (and elevated until 13:50)" {class: ext}
-  p1: "DynamoDB\n23:48 → 02:40" {class: bad}
-  p2: "EC2 launches failing\n02:25 → 10:36\n(connectivity issues until 13:50)" {class: warn}
-  p3: "NLB connection errors\n05:30 → 14:09" {class: warn}
-  p1 -> p2: "DNS fixed 02:25 (2 h 37 min after start)"
+  api: "EC2 API errors (EC2 section)\n11:48 PM → 2:25 AM (and elevated until 1:50 PM)" {class: ext}
+  p1: "DynamoDB\n11:48 PM → 2:40 AM" {class: bad}
+  p2: "EC2 launches failing\n2:25 AM → 10:36 AM\n(connectivity issues until 1:50 PM)" {class: warn}
+  p3: "NLB connection errors\n5:30 AM → 2:09 PM" {class: warn}
+  p1 -> p2: "DNS fixed 2:25 AM (2 h 37 min after start)"
   p2 -> p3: "EC2 after DNS: 11 h 25 min"
 }
 m: "Milestones (PDT)" {
   class: boundary
   grid-columns: 3
-  t1: "23:48 start"
-  t2: "00:38 source identified"
-  t3: "01:15 mitigations, tooling repaired"
-  t4: "02:25 DNS restored"
-  t5: "02:40 DynamoDB recovered"
-  t6: "04:14 throttle + DWFM restarts"
-  t7: "05:28 all leases"
-  t8: "05:30 NLB errors begin"
-  t9: "06:21 Network Manager latency"
-  t10: "06:52 flapping detected"
-  t11: "07:04 Lambda / Connect"
-  t12: "09:36 auto failover OFF"
-  t13: "10:36 propagation normal"
-  t14: "10:37 launches succeed"
-  t15: "11:23 throttles relaxed"
-  t16: "13:50 EC2 normal"
-  t17: "14:09 failover back ON"
-  t18: "14:20 event ends"
+  t1: "11:48 PM start"
+  t2: "12:38 AM source identified"
+  t3: "1:15 AM mitigations, tooling repaired"
+  t4: "2:25 AM DNS restored"
+  t5: "2:40 AM DynamoDB recovered"
+  t6: "4:14 AM throttle + DWFM restarts"
+  t7: "5:28 AM all leases"
+  t8: "5:30 AM NLB errors begin"
+  t9: "6:21 AM Network Manager latency"
+  t10: "6:52 AM flapping detected"
+  t11: "7:04 AM Lambda / Connect"
+  t12: "9:36 AM auto failover OFF"
+  t13: "10:36 AM propagation normal"
+  t14: "10:37 AM launches succeed"
+  t15: "11:23 AM throttles relaxed"
+  t16: "1:50 PM EC2 normal"
+  t17: "2:09 PM failover back ON"
+  t18: "2:20 PM event ends"
 }
 m.*.class: svc

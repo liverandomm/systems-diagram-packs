@@ -17,7 +17,7 @@ deps: "AWS services that depend on DynamoDB" {
 }
 nm: "EC2 Network Manager" {class: svc}
 nlb: "Network Load Balancer\n(health checks)" {class: svc}
-wave2: "second wave (later, from NLB)\nLambda 07:04 · Connect 07:04 · STS 08:31–09:59 PDT" {class: ext}
+wave2: "second wave (later, from NLB)\nLambda 7:04 AM · Connect 7:04 AM · STS 8:31–9:59 AM PDT" {class: ext}
 cust -> ddb: "resolve + connect"
 ddb -> r53: "DNS records managed in"
 deps.ec2 -> ddb: "lease state checks"

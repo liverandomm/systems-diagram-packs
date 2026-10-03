@@ -14,4 +14,4 @@ launch: "new launch request" {class: svc}
 api: "EC2 API" {class: svc}
 launch -> api
 api -> launch: "insufficient capacity\n(droplets without a lease aren't launch candidates)" {style.stroke: "#FF4C6E"}
-fix: "04:14 throttle intake + selective DWFM restarts → queues cleared → 05:28 all leases" {class: ok}
+fix: "4:14 AM throttle intake + selective DWFM restarts → queues cleared → 5:28 AM all leases" {class: ok}
