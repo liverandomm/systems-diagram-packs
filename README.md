@@ -7,5 +7,8 @@ Each folder holds D2 sources (`src/`), SVG (`svg/`) and PNG (`png/`). Render wit
 | Video | Pack |
 |---|---|
 | 01. Retries, Timeouts & Circuit Breakers: How Microservices Survive Failure | [01-retries-timeouts-circuit-breakers](01-retries-timeouts-circuit-breakers) |
+| 02. AWS Outage Explained: The DNS Race That Emptied DynamoDB's Endpoint (us-east-1, Oct 2025) | [02-aws-us-east-1-dynamodb-dns-race](02-aws-us-east-1-dynamodb-dns-race) |
+
+Corrections are welcome as issues or pull requests; each pack keeps a CHANGELOG.md of community fixes where one exists.
 
 License: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Free to use and adapt with attribution.

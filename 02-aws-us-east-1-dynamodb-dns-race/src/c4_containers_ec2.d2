@@ -1,0 +1,16 @@
+# C4 Level 2 (Containers): EC2 control, as described in AWS's summary (simplified).
+...@_style
+(** -> **)[*].style: {stroke: "#5B7CBA"; font-color: "#8A9EC0"; stroke-width: 2}
+direction: right
+ec2: "EC2 control (as described by AWS)" {
+  class: boundary
+  dwfm: "DropletWorkflow Manager (DWFM)\none per AZ" {class: svc}
+  droplets: "droplets (physical servers)\neach holds a lease from DWFM" {class: svc}
+  nm: "Network Manager\npropagates network config" {class: svc}
+  hc: "NLB health check subsystem" {class: svc}
+  dwfm -> droplets: "lease state check\nevery few minutes"
+  dwfm -> nm: "launch → network state"
+  nm -> hc: "new targets"
+}
+ddb: "DynamoDB (us-east-1)" {class: db}
+ec2.dwfm -> ddb: "depends on"

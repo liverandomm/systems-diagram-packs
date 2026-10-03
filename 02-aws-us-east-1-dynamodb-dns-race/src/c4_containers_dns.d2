@@ -1,0 +1,30 @@
+# C4 Level 2 (Containers): DynamoDB DNS management, as described in AWS's summary (simplified). Plan generations are illustrative.
+...@_style
+(** -> **)[*].style: {stroke: "#5B7CBA"; font-color: "#8A9EC0"; stroke-width: 2}
+direction: down
+mgmt: "DynamoDB DNS management" {
+  class: boundary
+  planner: "DNS Planner\nwatches LB health + capacity" {class: svc}
+  plans: "DNS plans\nJSON; history kept in S3 (DAT453)\ng4071, g4072, … (illustrative)" {class: db}
+  ea: "DNS Enactor · AZ a" {class: svc}
+  eb: "DNS Enactor · AZ b" {class: svc}
+  ec: "DNS Enactor · AZ c" {class: svc}
+  planner -> plans: "new plan, periodically"
+  plans -> ea
+  plans -> eb
+  plans -> ec
+}
+r53: "Route 53" {class: ext}
+recs: "Endpoint records" {
+  class: boundary
+  regional: "regional\ndynamodb.us-east-1.amazonaws.com" {class: bad}
+  fips: "FIPS" {class: svc}
+  ipv6: "IPv6" {class: svc}
+  acct: "account-specific" {class: svc}
+}
+note: "one regional DNS plan, shared across endpoints (per AWS).\nAWS describes the regional endpoint's record being emptied;\nthe other endpoints' status isn't described." {class: note}
+mgmt.ea -> r53: "transaction"
+mgmt.eb -> r53: "transaction"
+mgmt.ec -> r53: "transaction"
+r53 -> recs
+recs -> note: {style.opacity: 0}

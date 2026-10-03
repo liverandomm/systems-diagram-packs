@@ -1,0 +1,32 @@
+# C4 Level 1 (Context): DynamoDB us-east-1 regional endpoint and the services AWS names as affected. Simplified; systems as named in AWS's summary.
+...@_style
+(** -> **)[*].style: {stroke: "#5B7CBA"; font-color: "#8A9EC0"; stroke-width: 2}
+direction: down
+cust: "AWS customers & their apps" {class: person}
+ddb: "DynamoDB (us-east-1)\nregional endpoint\ndynamodb.us-east-1.amazonaws.com" {class: focus}
+r53: "Route 53\n[external DNS service]\nbehaved normally (AWS, DAT453)" {class: ext}
+deps: "AWS services that depend on DynamoDB" {
+  class: boundary
+  ec2: "EC2 (DWFM)" {class: svc}
+  lambda: "Lambda" {class: svc}
+  sts: "STS" {class: svc}
+  iam: "IAM sign-in" {class: svc}
+  rs: "Redshift" {class: svc}
+  ecs: "ECS / EKS / Fargate" {class: svc}
+  connect: "Amazon Connect" {class: svc}
+}
+nm: "EC2 Network Manager" {class: svc}
+nlb: "Network Load Balancer\n(health checks)" {class: svc}
+wave2: "second wave (later, from NLB)\nLambda 07:04 · Connect 07:04 · STS 08:31–09:59 PDT" {class: ext}
+cust -> ddb: "resolve + connect"
+ddb -> r53: "DNS records managed in"
+deps.ec2 -> ddb: "lease state checks"
+deps.lambda -> ddb
+deps.sts -> ddb
+deps.iam -> ddb
+deps.rs -> ddb
+deps.ecs -> ddb
+deps.connect -> ddb
+deps.ec2 -> nm: "launch → network config"
+nm -> nlb: "new targets"
+nlb -> wave2: {style.stroke-dash: 4}

@@ -1,0 +1,17 @@
+# Loop: DWFM congestive collapse after DynamoDB returned (02:25 PDT). Mechanism as described by AWS; dynamics illustrative.
+...@_style
+(** -> **)[*].style: {stroke: "#5B7CBA"; font-color: "#8A9EC0"; stroke-width: 2}
+direction: down
+queue: "queue of lease work" {class: warn}
+attempt: "attempt lease" {class: svc}
+timeout: "lease work timed out\n(took longer than the timeout)" {class: bad}
+requeue: "requeue" {class: warn}
+queue -> attempt
+attempt -> timeout: "too many droplets"
+timeout -> requeue
+requeue -> queue: "more work queued"
+launch: "new launch request" {class: svc}
+api: "EC2 API" {class: svc}
+launch -> api
+api -> launch: "insufficient capacity\n(droplets without a lease aren't launch candidates)" {style.stroke: "#FF4C6E"}
+fix: "04:14 throttle intake + selective DWFM restarts → queues cleared → 05:28 all leases" {class: ok}

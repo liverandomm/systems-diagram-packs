@@ -1,0 +1,28 @@
+# UML sequence: the Enactor race (from AWS's summary). Step 5's two branches ran at the same time (par).
+...@_style
+race: {
+  shape: sequence_diagram
+  style.fill: "#0B1020"
+  planner: "Planner"
+  a: "Enactor A (delayed)"
+  b: "Enactor B"
+  r53: "Route 53 (regional endpoint)"
+  clean: "Cleanup"
+  a -> a: "1. is my plan newer? ✓ (checked once, at start)"
+  retry: "2. loop: endpoint blocked → retry (slow)" {
+    a -> r53: "apply (blocked)"
+    r53 -> a: "retry"
+  }
+  planner -> planner: "3. many newer generations"
+  b -> r53: "4. apply newest plan to all endpoints ✓"
+  par: "5. par (same time)" {
+    b -> clean: "invoke clean-up"
+    a -> r53: "apply OLD plan to regional endpoint (overwrites newer)"
+  }
+  clean -> planner: "6. delete plans many generations older (includes A's plan, now active)"
+  r53 -> r53: "7. regional record: 0 IP addresses"
+  note: "8. inconsistent state: no Enactor can apply later plans → manual operator intervention" {
+    shape: text
+    style.font-color: "#FF4C6E"
+  }
+}

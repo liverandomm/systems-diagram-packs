@@ -1,0 +1,21 @@
+# Loop: NLB health-check flapping (as described by AWS). Detected 06:52 PDT; auto failover disabled 09:36, re-enabled 14:09.
+...@_style
+(** -> **)[*].style: {stroke: "#5B7CBA"; font-color: "#8A9EC0"; stroke-width: 2}
+direction: down
+nm: "Network Manager backlog\n(network state not yet propagated)" {class: warn}
+target: "new EC2 target\n(actually healthy)" {class: svc}
+hc: "NLB health check subsystem" {class: svc}
+flap: "fail → pass → fail\n(flapping)" {class: warn}
+load: "health checker load ↑\n→ degraded" {class: bad}
+fo: "automatic AZ DNS failover" {class: bad}
+cap: "multi-AZ LBs: capacity\ntaken out of service" {class: bad}
+nm -> target
+hc -> target: "check"
+target -> flap
+flap -> hc: "more checks"
+hc -> load
+load -> fo
+fo -> cap
+switch: "09:36 auto failover OFF → healthy nodes back\n(back ON 14:09)" {class: ok}
+wave: "second wave: Lambda 07:04 · Connect 07:04 · STS 08:31–09:59" {class: ext}
+cap -> wave: {style.stroke-dash: 4}
