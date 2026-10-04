@@ -1,6 +1,7 @@
-# Microservice topology: many products fan in to one shared gateway auth path on the Central US load balancers (Aug 17, 2026).
+# Microservice topology (SIMPLIFIED: GitHub does not publish the real topology): many products fan in to one shared gateway auth path on the Central US load balancers (Aug 17, 2026).
 ...@_style
 direction: down
+caveat: "simplified · GitHub doesn't publish this topology\n(hop order, fan-in and node count are our drawing from the RCA)" {class: note; style.font-color: "#FFB803"; style.font-size: 22}
 products: "products routed through Central US" {
   class: boundary
   issues: "Issues" {class: svc}

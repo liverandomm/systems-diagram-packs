@@ -10,5 +10,5 @@ fix: "fix job assignment, drain queues,\nraise internal rate limits slowing reco
 deploy -> pods -> side -> casc -> loop
 loop -> loop: "retry"
 loop -> fix
-same: "same shape as Aug 17:\na mesh sidecar without headroom,\nthen retries on work that couldn't succeed" {class: note}
+same: "same shape as Aug 17:\na mesh sidecar without headroom,\nthen retries adding load faster\nthan the system could clear it" {class: note}
 fix -> same: {style.opacity: 0}

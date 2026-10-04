@@ -15,4 +15,4 @@ d1: "a spike faster than new capacity can start:\nthat still needs headroom" {cl
 e0: "5 · shrink the shared path\n(isolate critical systems, remove shared dependencies)" {class: ok}
 e1: "isolation limits how far one failure spreads,\nnot whether the first one happens" {class: ext}
 f0: "6 · rehearse the ramp\n(site by site; healthy telemetry for N minutes per step)" {class: ok}
-f1: "a gradual ramp is slower by design:\nusers wait longer, so there's no second wave" {class: ext}
+f1: "slower by design: users wait longer.\nLowers, doesn't remove, second-wave risk:\nclients stuck in a retry loop must be blocked first" {class: ext}

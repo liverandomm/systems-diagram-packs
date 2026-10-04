@@ -24,7 +24,7 @@ Pressure moved to four HAProxy nodes on the shared gateway authentication path. 
 - optimistic retries inside GitHub's gateway;
 - a latent retry bug in a VS Code client, which took Copilot Token Service from 7–9K to 70–100K requests per second.
 
-GitHub recovered by stopping the saturated nodes at the same time, refusing some requests on purpose (a 403 on token requests) and ramping traffic back site by site, so there was no second wave.
+Part of how GitHub recovered: stopping the saturated nodes at the same time, refusing some requests on purpose (a 403 on token requests) and cutting retries before ramping traffic back site by site. A gradual ramp lowers the risk of a second wave, but it can't stop clients already stuck in a retry loop; those had to be blocked first.
 
 ## Files
 
@@ -36,7 +36,7 @@ Each diagram has three versions:
 **`seq_retry_two_layers`**: UML sequence, simplified. Shows the client, the gateway, the saturated internal LB and auth / Copilot Token Service, with the two retry loops. The hop order is didactic, and the ×3 attempt counts are illustrative.
 [PNG](png/seq_retry_two_layers.png) · [SVG](svg/seq_retry_two_layers.svg) · [D2](src/seq_retry_two_layers.d2)
 
-**`topology_shared_auth`**: microservice topology. Shows the products that route through Central US fanning in to four HAProxy nodes and the shared gateway auth path, the pod with its sidecar, and the autoscaler that watched the wrong gauge.
+**`topology_shared_auth`**: microservice topology, **simplified: GitHub doesn't publish this topology** (hop order, fan-in and node count are our drawing from the RCA). Shows the products that route through Central US fanning in to four HAProxy nodes and the shared gateway auth path, the pod with its sidecar, and the autoscaler that watched the wrong gauge.
 [PNG](png/topology_shared_auth.png) · [SVG](svg/topology_shared_auth.svg) · [D2](src/topology_shared_auth.d2)
 
 **`retry_multiplier`**: why layers multiply (3 × 3 = 9 calls per click, illustrative) and the fix: retry at one layer, with a budget.
@@ -45,7 +45,7 @@ Each diagram has three versions:
 **`timeline_aug17`**: the day in UTC, from first impact at 1:28 PM to resolution at 9:15 PM, plus the three durations the sources give.
 [PNG](png/timeline_aug17.png) · [SVG](svg/timeline_aug17.svg) · [D2](src/timeline_aug17.d2)
 
-**`failure_dynamics`**: the channel's failure-over-time grid. First event, signal, shared resource, amplifier, containment, trade-off, recovery without a second wave.
+**`failure_dynamics`**: the channel's failure-over-time grid. First event, signal, shared resource, amplifier, containment, trade-off, recovery (block the loop, then ramp back slowly).
 [PNG](png/failure_dynamics.png) · [SVG](svg/failure_dynamics.svg) · [D2](src/failure_dynamics.d2)
 
 **`aug06_backlog`**: the 6 Aug 2026 Actions incident. A routine deploy, sidecars throttled, runners stuck retrying revoked jobs: a self-amplifying backlog.
