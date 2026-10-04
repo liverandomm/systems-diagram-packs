@@ -1,0 +1,26 @@
+# Per-client rate limiting vs load shedding: two different questions (Google SRE book ch. 22; AWS Builders' Library, Yanacek 2019).
+...@_style
+direction: down
+rl: "PER-CLIENT RATE LIMIT\nasks: is this client over its quota?\n(fairness between clients)" {
+  class: boundary
+  a: "client A\nwithin quota" {class: ok}
+  b: "client B\nOVER quota" {class: bad}
+  c: "client C\nwithin quota" {class: ok}
+  lim: "limiter\nper client" {class: svc}
+  a -> lim
+  b -> lim: "429 for B only"
+  c -> lim
+}
+ls: "LOAD SHEDDING\nasks: am I, the server, over capacity right now?" {
+  class: boundary
+  a: "client A\nwithin quota" {class: ok}
+  b: "client B\nwithin quota" {class: ok}
+  c: "client C\nwithin quota" {class: ok}
+  srv: "server\nover capacity" {class: bad}
+  a -> srv
+  b -> srv
+  c -> srv: "shed the excess"
+}
+rl -> ls: "you need both" {style.stroke-dash: 4}
+why: "Even with throttling, servers still overload (AWS):\n· a surge in traffic\n· losing part of the fleet\n· clients shifting from cheap requests to expensive ones\nRate limiting \"may not be able to stop a failure that has already begun\" (Google SRE book)" {class: warn}
+ls -> why {style.stroke-dash: 4}

@@ -1,0 +1,12 @@
+# Never shed the health check (AWS Builders' Library) and the health-check spiral (Google SRE book ch. 22). Server counts ILLUSTRATIVE.
+...@_style
+direction: down
+s4: "4 servers take traffic\n(ILLUSTRATIVE count)" {class: svc}
+s3: "one overloaded server misses LB pings\nLB stops sending it work: it sits idle" {class: warn}
+s2: "fewer servers, more load each:\nthe ones left overload faster" {class: bad}
+s4 -> s3 -> s2
+s2 -> s3: "spiral" {style.stroke-dash: 4; style.stroke: "#FF4C6E"}
+fix: "fix: LB pings go to the front of the line\n\"in a brownout scenario, the last thing we want to do\nis to reduce the size of our fleets\" (AWS)" {class: ok}
+two: "two questions (Google):\nprocess alive?  -> scheduler\ncan serve this kind of request now?  -> load balancer\na server that's shedding is still serving. Answer both, honestly." {class: focus}
+s2 -> fix
+fix -> two

@@ -1,0 +1,14 @@
+# One server under overload, over time (ILLUSTRATIVE shape, no real data). Mechanism: AWS Builders' Library (Yanacek, 2019) and Google SRE book ch. 22.
+...@_style
+direction: down
+tag: "ILLUSTRATIVE: curve shapes, no real data" {class: warn}
+m0: "minute 0\noffered load climbs\n(or part of the fleet disappears)\nthe server takes the work anyway" {class: svc}
+m1: "minute 1\nthreads contend, queues grow,\nlatency rises" {class: warn}
+m2: "inflection point (AWS)\nperformance degrades\neven more rapidly" {class: bad}
+m3: "latency > client timeout\nthroughput stays high,\ngoodput collapses" {class: bad}
+m4: "clients retry\nload multiplies:\n\"overload as a steady state\" (AWS)" {class: bad}
+m5: "shedding ON\ngoodput holds flat;\nsome requests refused;\noverall availability drifts down" {class: ok}
+m0 -> m1 -> m2 -> m3 -> m4 -> m5
+m4 -> m1: "retries feed back" {style.stroke-dash: 4; style.stroke: "#FF4C6E"}
+defs: "throughput = every request sent to the server\ngoodput = requests handled without errors, fast enough for the client to use (AWS)\nGoogle's example: healthy at 10,000 QPS, crashing at 11,000 QPS;\ndropping to 9,000 QPS will almost certainly not stop the crashes" {class: note}
+m5 -> defs {style.opacity: 0}

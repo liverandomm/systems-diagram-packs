@@ -1,0 +1,17 @@
+# Neighbors 2: hedged requests add load (Dean & Barroso, "The Tail at Scale", CACM 2013). UML sequence, 2 replicas.
+...@_style
+seq: "hedged request" {
+  shape: sequence_diagram
+  style: {fill: "#0B1020"; stroke: "#5B7CBA"; font-color: "#4CC9F0"; font: mono}
+  client: "client" {class: svc}
+  r1: "replica 1" {class: svc}
+  r2: "replica 2" {class: svc}
+  (** -> **)[*].style: {stroke: "#8C9EBF"; font-color: "#E6EDF7"}
+  client -> r1: "request"
+  client -> client: "wait for p95 latency\n(slower than 95% of normal requests)"
+  client -> r2: "same request (hedge)"
+  r2 -> client: "answers first: use it"
+  client -> r1: "cancel"
+}
+note: "Waiting for the p95 before hedging limits the extra load to about 5%.\nGoogle benchmark (2013): p99.9 1,800 ms to 74 ms with +2% requests\n(hedge after 10 ms, 1,000 keys on 100 servers).\nOur rule: hedge when you have headroom, shed when you don't." {class: note}
+seq -> note {style.opacity: 0}

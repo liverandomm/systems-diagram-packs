@@ -1,0 +1,19 @@
+# Failure dynamics over time (channel signature): one server under overload. Generic, ILLUSTRATIVE; no clock times. Sources: AWS Builders' Library, Google SRE book ch. 21-22.
+...@_style
+grid-rows: 7
+grid-columns: 2
+grid-gap: 12
+h0: "stage" {class: note}
+h1: "what happens (generic server, illustrative)" {class: note}
+a0: "1 · first event" {class: bad}
+a1: "traffic climbs, or capacity drops\n(surge, lost fleet, cheap-to-expensive requests)" {class: svc}
+b0: "2 · signal" {class: warn}
+b1: "latency crosses the client's timeout:\nthroughput stays high, goodput collapses" {class: svc}
+c0: "3 · shared resource" {class: bad}
+c1: "threads and queues fill;\nretries multiply the offered load" {class: svc}
+d0: "4 · containment" {class: ok}
+d1: "shed by priority, newest first,\nwithin an adaptive limit, as early as you can" {class: ok}
+e0: "5 · trade-off" {class: ext}
+e1: "some requests are refused on purpose;\noverall availability drifts down" {class: ext}
+f0: "6 · recovery" {class: ok}
+f1: "goodput holds, then load ramps back gradually" {class: ok}

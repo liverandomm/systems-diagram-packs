@@ -1,0 +1,9 @@
+# FIFO is a trap under overload (Google SRE book ch. 22 example) and the fix: newest first, with a deadline on every queue (SRE book; AWS Builders' Library).
+...@_style
+grid-rows: 2
+grid-columns: 2
+grid-gap: 16
+fifo: "FIFO under overload (Google's example)\nqueue = 10x threads · 100 ms per request\na request joining a full queue takes 1.1 s,\nmost of it waiting\nclient timeout 1 s (ILLUSTRATIVE):\nthe reply arrives after the client gave up" {class: bad}
+lifo: "LIFO + a deadline\nserve the newest request first (its client is most likely still waiting)\nthrow out anything older than the max wait (AWS)\nCoDel: built for network packets (RFC 8289);\non request queues it's an adaptation: watch time in queue" {class: ok}
+cost: "cost of LIFO: fairness\nthe oldest requests can wait forever\n(our reading), so always pair it with a deadline" {class: warn}
+prop: "deadline propagation (Google's example)\nA picks 30 s, spends 7 s,\ncalls B with 23 s left" {class: svc}

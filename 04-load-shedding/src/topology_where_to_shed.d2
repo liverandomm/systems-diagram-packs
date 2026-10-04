@@ -1,0 +1,13 @@
+# Where to shed: a shedding point on every hop, cheapest at the edge (AWS "Protecting in layers"). Generic topology, simplified.
+...@_style
+direction: down
+client: "clients" {class: person}
+edge: "edge\n(CDN / WAF)" {class: warn}
+gw: "API gateway\n(Netflix: Zuul; priority buckets\nCRITICAL · DEGRADED · NON-CRITICAL)" {class: focus}
+svc: "service" {class: svc}
+db: "database" {class: db}
+client -> edge: "client-side throttling (Google)\nadmission control (Envoy)"
+edge -> gw: "shed: cheapest here,\nknows the least"
+gw -> svc: "shed by priority"
+svc -> db: "shed by criticality"
+note: "simplified, generic topology. Early rejection is the cheapest place to drop excess traffic,\nbut it costs visibility: log who you refused and which operation (AWS).\nGitHub, Aug 17, 2026: a 403 on Copilot token requests at the load balancers, then a gradual ramp back.\nOur reading: a blunt version of this lever. GitHub doesn't call it load shedding,\nand doesn't publish this topology." {class: note}

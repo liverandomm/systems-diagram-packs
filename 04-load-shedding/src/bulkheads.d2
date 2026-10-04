@@ -1,0 +1,7 @@
+# Neighbors 1: bulkheads split capacity (isolation), which is not shedding. Google SRE book ch. 22; Netflix concurrency-limits README; term: Azure "Bulkhead pattern".
+...@_style
+grid-columns: 1
+grid-gap: 14
+a: "Google's suggestion\ncap any one client at 25% of threads" {class: svc}
+b: "Netflix concurrency-limits\nlive traffic 90% · batch 10%" {class: svc}
+c: "isolation is not shedding\nif everyone is legitimately busy,\nevery compartment fills up\nand you still choose what to drop" {class: warn}

@@ -1,0 +1,16 @@
+# C4-style components inside one service: the three in-process levers (priority, queue, concurrency limit). Simplified, generic.
+...@_style
+direction: down
+lb: "load balancer" {class: ext}
+svc: "one service (simplified)" {
+  class: boundary
+  cls: "1 · priority classifier\nCRITICAL_PLUS · CRITICAL\nSHEDDABLE_PLUS · SHEDDABLE\n(Google SRE book names)\nLB ping goes to the front" {class: focus}
+  q: "2 · request queue\nnewest first (LIFO)\n+ max wait (deadline)" {class: warn}
+  lim: "3 · concurrency limiter\nadaptive: latency vs baseline\n(Netflix concurrency-limits, Envoy)" {class: focus}
+  work: "worker threads" {class: svc}
+  cls -> q -> lim -> work
+}
+db: "dependencies" {class: db}
+lb -> svc.cls: "requests + health checks"
+svc.work -> db: "criticality + remaining deadline\ntravel with the call"
+svc.cls -> lb: "fast 'overloaded' + back-off hint\n(not a timeout)" {style.stroke-dash: 4; style.stroke: "#FFB803"}

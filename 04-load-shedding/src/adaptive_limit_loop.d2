@@ -1,0 +1,18 @@
+# How much to accept: an adaptive concurrency limit (Netflix concurrency-limits README; Envoy adaptive concurrency filter docs, latest Oct 2026).
+...@_style
+direction: down
+static: "fixed RPS limit\nstress-test the tipping point, set it below\n(say 75%, Netflix's example), token bucket\nautoscaling makes it go stale" {class: ext}
+law: "Little's Law\nrequests in flight = RPS x average latency" {class: svc}
+meas: "measure latency\nvs a baseline\n(Vegas: minRTT · Gradient2: long-window average)" {class: focus}
+down: "latency above baseline\nqueue forming: lower the limit" {class: warn}
+up: "latency near baseline\nraise the limit" {class: ok}
+rej: "past the limit: reject fast\nclear 'overloaded' signal + back-off hint\nnot a timeout, not an invitation to retry" {class: bad}
+static -> law: "replace with"
+law -> meas
+meas -> down
+meas -> up
+down -> meas {style.stroke-dash: 4}
+up -> meas {style.stroke-dash: 4}
+down -> rej
+envoy: "Envoy adaptive concurrency filter\ngradient = (minRTT + B) / sampleRTT\nlimit_new = gradient x limit_old + headroom" {class: note}
+google: "Google SRE book ch. 21: reject when active threads\n(smoothed) grow beyond the number of CPUs" {class: note}

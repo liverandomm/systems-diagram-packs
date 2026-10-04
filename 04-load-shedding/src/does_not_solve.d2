@@ -1,0 +1,19 @@
+# What load shedding does NOT solve (channel signature). Sources: AWS Builders' Library; Netflix Tech Blog 2020 and 2024; Google SRE book ch. 21-22.
+...@_style
+grid-rows: 7
+grid-columns: 2
+grid-gap: 12
+h0: "does NOT solve" {class: note}
+h1: "why / what to do instead" {class: note}
+a0: "1 · no new capacity" {class: bad}
+a1: "in a brownout, the priority is to add capacity\nand address the bottleneck (AWS)" {class: ext}
+b0: "2 · can blind your autoscaler" {class: bad}
+b1: "shed at about the same CPU target that triggers scaling\nand the signal never comes, or comes late (AWS).\nNetflix (2024): shed only above the autoscaling CPU target" {class: ext}
+c0: "3 · can flatter your dashboards" {class: bad}
+c1: "fast rejections drag latency down: shed 60% and the median\nmight look pretty amazing while successful requests are terrible (AWS)" {class: ext}
+d0: "4 · your priority labels can be wrong" {class: bad}
+d1: "Netflix: a low-priority request, when shed, triggered a race condition\non Android and iOS (sporadic playback errors). Test shedding on purpose" {class: ext}
+e0: "5 · clients that ignore the signal" {class: bad}
+e1: "a refused client that retries at once comes back:\nclient-side retry budgets + backoff with jitter" {class: ext}
+f0: "neighbors" {class: warn}
+f1: "bulkheads are isolation, not shedding;\nhedged requests add load (hedge with headroom, shed without)" {class: ext}
