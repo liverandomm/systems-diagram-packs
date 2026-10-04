@@ -1,0 +1,38 @@
+# Microservice topology: many products fan in to one shared gateway auth path on the Central US load balancers (Aug 17, 2026).
+...@_style
+direction: down
+products: "products routed through Central US" {
+  class: boundary
+  issues: "Issues" {class: svc}
+  prs: "Pull requests" {class: svc}
+  apis: "APIs" {class: svc}
+  actions: "Actions" {class: svc}
+  copilot: "Copilot" {class: svc}
+  signin: "Sign-in (SAML / OIDC)" {class: svc}
+  hooks: "Webhooks" {class: svc}
+}
+dc: "Central US datacenter" {
+  class: boundary
+  lbs: "4 HAProxy nodes\nflow limits exhausted" {class: bad}
+  gwauth: "gateway authentication path\n(shared)" {class: bad}
+  pod: "pod" {
+    class: boundary
+    sidecar: "Istio sidecar\nconcurrency limit hit" {class: bad}
+    svc: "host service\nlooked fine" {class: ok}
+    sidecar -> svc
+  }
+  hpa: "autoscaling policy\nwatched the host service" {class: warn}
+  hpa -> pod.svc: "watches" {style.stroke: "#3DDB96"}
+  hpa -> pod.sidecar: "not watched" {style.stroke: "#FF4C6E"; style.stroke-dash: 4}
+  lbs -> gwauth
+  gwauth -> pod.sidecar
+}
+nova: "Northern Virginia\n(took moved traffic; later its own retry storm)" {class: ext}
+products.issues -> dc.lbs
+products.prs -> dc.lbs
+products.apis -> dc.lbs
+products.actions -> dc.lbs
+products.copilot -> dc.lbs
+products.signin -> dc.lbs
+products.hooks -> dc.lbs
+dc.lbs -> nova: "some failing traffic shifted" {style.stroke-dash: 4}

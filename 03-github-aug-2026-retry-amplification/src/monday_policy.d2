@@ -1,0 +1,18 @@
+# Monday: six recommendations (channel recommendations, our opinion), built from GitHub's published follow-ups. Each with what it does NOT solve.
+...@_style
+grid-columns: 2
+grid-gap: 12
+h0: "change" {class: note}
+h1: "what it does NOT solve" {class: note}
+a0: "1 · retry at one layer, not every layer\n(edge or client owns retries; hops in between fail fast)" {class: ok}
+a1: "clients you don't ship (an editor extension\non laptops you'll never touch)" {class: ext}
+b0: "2 · retry budget + backoff with jitter\n(GitHub CTO: retry limits, retry budgets, variable timeouts)" {class: ok}
+b1: "adds no capacity: if first attempts alone are too many,\nit only stops you making it worse" {class: ext}
+c0: "3 · defend the server from clients you can't fix\n(per-client limits, edge shedding, 403 / 429 + Retry-After)" {class: ok}
+c1: "you're choosing who fails; a buggy client\nmay ignore the signal anyway" {class: ext}
+d0: "4 · autoscale on the limit you actually hit\n(sidecar concurrency, not just the host); alert on saturation" {class: ok}
+d1: "a spike faster than new capacity can start:\nthat still needs headroom" {class: ext}
+e0: "5 · shrink the shared path\n(isolate critical systems, remove shared dependencies)" {class: ok}
+e1: "isolation limits how far one failure spreads,\nnot whether the first one happens" {class: ext}
+f0: "6 · rehearse the ramp\n(site by site; healthy telemetry for N minutes per step)" {class: ok}
+f1: "a gradual ramp is slower by design:\nusers wait longer, so there's no second wave" {class: ext}

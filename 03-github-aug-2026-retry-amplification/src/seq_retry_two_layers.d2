@@ -1,0 +1,36 @@
+# UML sequence (simplified): how two retry layers multiplied load on the saturated load balancers. GitHub, Aug 17, 2026.
+# Hop order is didactic: GitHub's RCA does not publish the exact call path. Attempt counts (x3) are ILLUSTRATIVE.
+...@_style
+direction: down
+seq: "UML sequence (simplified): two retry layers, Aug 17, 2026" {
+  shape: sequence_diagram
+  style.fill: "#0B1020"
+  style.font-color: "#4CC9F0"
+  client: "client\n(editor extension)" {class: warn}
+  gw: "GitHub gateway" {class: focus}
+  lb: "internal LB\n(HAProxy, flows exhausted)" {class: bad}
+  auth: "auth /\nCopilot Token Service" {class: svc}
+  client -> gw: "1. token request"
+  gw -> lb: "2. auth call"
+  lb -> auth: "3. slow (LB saturated)"
+  gw -> gw: "4. timeout"
+  layer1: "loop · layer 1: gateway retries (optimistic), up to 3 attempts (illustrative)" {
+    style.fill: "#1A1424"; style.stroke: "#FFB803"; style.font-color: "#FFB803"
+    gw -> lb: "retry, same LB"
+  }
+  gw -> client: "5. error / slow response"
+  layer2: "loop · layer 2: client retry bug (latent, triggered by delayed replies)" {
+    style.fill: "#101C2C"; style.stroke: "#4CC9F0"; style.font-color: "#4CC9F0"
+    client -> gw: "retry"
+    gw -> lb: "x3 again"
+  }
+  (** -> **)[*].style: {stroke: "#8C9EBF"; font-color: "#E6EDF7"; stroke-width: 2; italic: false}
+}
+note: |md
+  **Worst case:** client 3 × gateway 3 = 9 calls per click (illustrative).
+
+  **GitHub's real figure:** Copilot Token Service 7–9K → 70–100K requests/s (about 10×).
+
+  Sources: githubstatus.com incident RCA; GitHub availability report (Aug 2026). CC BY 4.0 · Systems, Drawn
+| {style.font-color: "#E6EDF7"}
+seq -> note: {style.opacity: 0}

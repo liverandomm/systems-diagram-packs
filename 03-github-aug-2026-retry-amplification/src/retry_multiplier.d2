@@ -1,0 +1,16 @@
+# Retry layers multiply. Attempt counts are ILLUSTRATIVE; GitHub's real figure is the ~10x jump in Copilot Token Service RPS.
+...@_style
+direction: down
+click: "1 click" {class: person}
+c1: "client try 1" {class: warn}
+c2: "client try 2" {class: warn}
+c3: "client try 3" {class: warn}
+g: "each client try -> gateway tries 3x\n= 9 calls to the saturated LB" {class: bad}
+click -> c1
+click -> c2
+click -> c3
+c1 -> g
+c2 -> g
+c3 -> g
+fix: "retry at ONE layer + a retry budget (e.g. <= 10% of traffic, illustrative)\n-> worst case = that layer's attempts, not a product" {class: ok}
+g -> fix: "the fix" {style.stroke-dash: 4}

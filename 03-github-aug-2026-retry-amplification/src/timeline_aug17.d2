@@ -1,0 +1,15 @@
+# Timeline, Aug 17, 2026 (UTC, 12-hour). Sources: githubstatus.com incident RCA and updates; GitHub availability report; GitHub CTO blog.
+...@_style
+direction: down
+t1: "1:28 PM\nfirst impact" {class: bad}
+t2: "1:40 PM\nfirst public post" {class: warn}
+t3: "2:04 PM\n~20% web/API errors,\n~50% downloads" {class: bad}
+t4: "2:24 PM\nSAML/OIDC sign-in hit" {class: bad}
+t5: "4:36 PM\nmost services recovered" {class: ok}
+t6: "~6:03 PM\nActions recovered" {class: ok}
+t7: "7:13 PM\ntoken retries partially\ndisabled" {class: warn}
+t8: "9:02 PM\nCopilot Token Service\nrecovered" {class: ok}
+t9: "9:15 PM\nresolved" {class: ok}
+t1 -> t2 -> t3 -> t4 -> t5 -> t6 -> t7 -> t8 -> t9
+n: "durations by source:\n7 h 47 min from first impact (RCA, CTO blog)\n7 h 35 min from first post\n~6 h 44 min customer impact (availability report)" {class: note}
+t9 -> n: {style.opacity: 0}
