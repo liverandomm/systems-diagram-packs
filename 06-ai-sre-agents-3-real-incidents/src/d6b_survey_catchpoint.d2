@@ -1,0 +1,41 @@
+...@_style
+...@_style_v05
+...@_style_v06
+vars: {d2-config: {pad: 24}}
+grid-rows: 5
+grid-gap: 26
+
+title: "at least somewhat comfortable with AI suggestions\nduring incident response" {class: lbl; width: 1720; height: 120}
+
+r_dir: "" {
+  style.opacity: 0
+  grid-columns: 3
+  grid-gap: 0
+  lab: "Directors" {class: lbl; width: 300}
+  bar: "86%" {class: bar; width: 860; height: 110}
+  chip: "small subgroups" {class: discrepancy; width: 420; height: 110}
+}
+
+r_ic: "" {
+  style.opacity: 0
+  grid-columns: 3
+  grid-gap: 0
+  lab: "ICs" {class: lbl; width: 300}
+  bar: "64%" {class: bar; width: 640; height: 110}
+  pad: "" {style.opacity: 0; width: 640; height: 110}
+}
+
+x_lab: "Catchpoint SRE Report 2026 · vendor survey · 418 responses · Jul–Aug 2025\nsubgroup sizes not published" {class: lbl; width: 1720; style.font-color: "#C9D4E8"}
+
+foot: "to scale: 10 px = 1 point · 'comfortable' = somewhat + very comfortable · the chart excludes executives\namber dashed = the record disagrees or has a gap · source: Catchpoint, The SRE Report 2026, p.36 printed / p.37 PDF" {class: note}
+
+**.style.font-size: 36
+**.style.bold: true
+**.x_*.style.font-size: 28
+**.x_*.style.bold: false
+foot.style.font-size: 22
+foot.style.bold: false
+(** -> **)[*].style.font-size: 36
+(** -> **)[*].style.bold: true
+x_*.style.font-size: 28
+x_*.style.bold: false

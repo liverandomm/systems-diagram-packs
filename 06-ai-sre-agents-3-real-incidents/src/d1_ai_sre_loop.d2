@@ -1,0 +1,42 @@
+...@_style
+...@_style_v05
+...@_style_v06
+vars: {d2-config: {pad: 24}}
+grid-rows: 5
+grid-gap: 30
+
+title: "the shape both vendors describe · our summary" {class: lbl; width: 1720; height: 70}
+
+loop: "" {
+  style.opacity: 0
+  width: 1720
+  direction: right
+  s1: "read the\nsignals" {class: vendor; width: 320}
+  s2: "find similar\npast incidents" {class: vendor; width: 320}
+  s3: "propose\na cause" {class: vendor; width: 320}
+  s4: "suggest\na step" {class: vendor; width: 320}
+  s1 -> s2: "" {class: req}
+  s2 -> s3: "" {class: req}
+  s3 -> s4: "" {class: req}
+}
+
+x_rule: "every box proposes · none acts" {class: lbl; width: 1720; height: 50; style.font-color: "#C9D4E8"}
+
+stat: "Investigation: AI's highest operational value (35.8%)" {
+  class: vendor
+  width: 1720
+  x_lab: "New Relic 2026 Observability Forecast · vendor survey (with ETR) ·\nn=2,575 respondents · Apr–May 2026 · question not published" {class: lbl; style.font-color: "#C9D4E8"}
+}
+
+foot: "boxes = our summary of PagerDuty's and Datadog's own product descriptions (vendor claims, not measurements)\npurple = vendor description · sources: PagerDuty SRE Agent GA (30 Oct 2025) · Datadog Bits AI SRE press release (2 Dec 2025)\nNew Relic 2026 Observability Forecast, PDF p.7 (35.8%), p.2 and p.25 (n=2,575)" {class: note}
+
+**.style.font-size: 36
+**.style.bold: true
+**.x_*.style.font-size: 28
+**.x_*.style.bold: false
+foot.style.font-size: 22
+foot.style.bold: false
+(** -> **)[*].style.font-size: 36
+(** -> **)[*].style.bold: true
+x_*.style.font-size: 28
+x_*.style.bold: false

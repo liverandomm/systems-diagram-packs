@@ -1,0 +1,57 @@
+...@_style
+...@_style_v05
+...@_style_v06
+vars: {d2-config: {pad: 24}}
+grid-rows: 5
+grid-gap: 26
+
+title: "AWS us-east-1 · 20 Oct 2025 · after DNS came back" {class: lbl; width: 1760; height: 70}
+
+t25: "" {
+  class: ok; width: 1760
+  grid-rows: 2
+  grid-gap: 4
+  t: "DNS restored 2:25 AM PDT · 20 Oct" {class: lbl; height: 60}
+  x_art: "06:25 ART · increased errors on new EC2 launches continued (per AWS)" {class: lbl; height: 44; style.font-color: "#C9D4E8"}
+}
+
+hurt: "" {
+  class: hurt; width: 1760
+  grid-rows: 2
+  grid-gap: 4
+  t: "would hurt · EC2 lease recovery: no established procedure" {class: lbl; height: 60}
+  x_q: "\"Since this situation had no established operational recovery procedure…\"\n— AWS, about DWFM (the EC2 lease system)\nour analysis: an agent that follows runbooks has nothing to follow" {class: lbl; style.font-color: "#FFD666"}
+}
+
+row: "" {
+  style.opacity: 0
+  grid-columns: 2
+  grid-gap: 40
+  end: "" {
+    class: svc; width: 700
+    grid-rows: 2
+    grid-gap: 4
+    t: "event ended\n2:20 PM PDT · 20 Oct" {class: lbl; height: 110}
+    x_art: "18:20 ART" {class: lbl; height: 44; style.font-color: "#C9D4E8"}
+  }
+  q: "" {
+    class: quote; width: 1020
+    grid-rows: 2
+    grid-gap: 4
+    t: "\"We have already disabled the\nDynamoDB DNS Planner and the DNS\nEnactor automation worldwide.\"" {class: lbl; style.font-color: "#C9D4E8"; style.italic: true}
+    x_src: "— AWS post-event summary" {class: lbl; height: 44; style.font-color: "#8C9EBF"}
+  }
+}
+
+foot: "help/hurt = our analysis · EC2 normal 1:50 PM PDT (17:50 ART); whole event 11:48 PM PDT 19 Oct → 2:20 PM PDT 20 Oct (per AWS)\n= 03:48 ART 20 Oct → 18:20 ART 20 Oct\nsource: AWS post-event summary, aws.amazon.com/message/101925 · times as AWS reports them (PDT) · ART = PDT + 4 h" {class: note}
+
+**.style.font-size: 36
+**.style.bold: true
+**.x_*.style.font-size: 28
+**.x_*.style.bold: false
+foot.style.font-size: 22
+foot.style.bold: false
+(** -> **)[*].style.font-size: 36
+(** -> **)[*].style.bold: true
+x_*.style.font-size: 28
+x_*.style.bold: false

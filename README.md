@@ -11,6 +11,7 @@ Each folder holds D2 sources (`src/`), SVG (`svg/`) and PNG (`png/`). Render wit
 | 03. GitHub Outage, Aug 2026: How Retries Amplified the Overload | [03-github-aug-2026-retry-amplification](03-github-aug-2026-retry-amplification) |
 | 04. Rate Limiting Isn't Enough: Load Shedding Explained | [04-load-shedding](04-load-shedding) |
 | 05. Google Cloud Storage incident: write errors in us-central1, 8–9 Oct 2026 | [05-gcs-us-central1-oct-2026](05-gcs-us-central1-oct-2026) |
+| 06. AI SRE Agents on 3 Real Incidents: Where They'd Help, Where They'd Hurt | [06-ai-sre-agents-3-real-incidents](06-ai-sre-agents-3-real-incidents) |
 
 Corrections are welcome as issues or pull requests; each pack keeps a CHANGELOG.md of community fixes where one exists.
 

@@ -1,0 +1,54 @@
+...@_style
+...@_style_v05
+...@_style_v06
+vars: {d2-config: {pad: 24}}
+grid-rows: 4
+grid-gap: 40
+
+tiles: "" {
+  style.opacity: 0
+  grid-columns: 3
+  grid-gap: 30
+  aws: "" {
+    class: svc; width: 580
+    grid-rows: 3
+    name: "AWS us-east-1\nOct 2025" {class: lbl; style.font-color: "#E6EDF7"}
+    grid-gap: 20
+    help: "would help" {class: slot; width: 500}
+    hurt: "would hurt" {class: slot; width: 500}
+  }
+  gh: "" {
+    class: svc; width: 580
+    grid-rows: 3
+    name: "GitHub\n17 Aug 2026" {class: lbl; style.font-color: "#E6EDF7"}
+    grid-gap: 20
+    help: "would help" {class: slot; width: 500}
+    hurt: "would hurt" {class: slot; width: 500}
+  }
+  gcs: "" {
+    class: svc; width: 580
+    grid-rows: 3
+    name: "Google Cloud Storage\nus-central1 · Oct 2026" {class: lbl; style.font-color: "#E6EDF7"}
+    grid-gap: 20
+    help: "would help" {class: slot; width: 500}
+    hurt: "would hurt" {class: slot; width: 500}
+  }
+}
+
+x_chip: "our analysis · no agent was used" {class: ext; width: 760}
+
+ask: "Should it hold the pager?" {class: lbl; style.font-color: "#E6EDF7"}
+
+foot: "three real incidents, each from the company's own report · no agent was on call in any of them" {class: note}
+
+**.style.font-size: 36
+**.style.bold: true
+**.x_*.style.font-size: 28
+**.x_*.style.bold: false
+foot.style.font-size: 22
+foot.style.bold: false
+(** -> **)[*].style.font-size: 36
+(** -> **)[*].style.bold: true
+ask.style.font-size: 54
+x_*.style.font-size: 28
+x_*.style.bold: false

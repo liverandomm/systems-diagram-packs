@@ -1,0 +1,39 @@
+...@_style
+...@_style_v05
+...@_style_v06
+vars: {d2-config: {pad: 24}}
+grid-rows: 5
+grid-gap: 26
+
+title: "Then why do the vendors say it works?" {class: lbl; width: 1800; height: 80}
+
+pd: "\"classifies incidents, surfaces critical context from past\nincidents, and recommends remediation steps\"" {
+  class: vendor
+  width: 1800
+  x_src: "— PagerDuty (SRE Agent GA, 30 Oct 2025) · vendor claim" {class: lbl; style.font-color: "#C9D4E8"}
+}
+
+dd: "\"investigates alerts and surfaces actionable root cause in minutes\"" {
+  class: vendor
+  width: 1800
+  x_src: "— Datadog (Bits AI SRE GA, 2 Dec 2025) · vendor claim" {class: lbl; style.font-color: "#C9D4E8"}
+}
+
+bench: "Cognition: Devin Oncall 100% on a 17-fault benchmark (own evaluation)\nCloudThinker also 100% (public leaderboard)" {
+  class: vendor
+  width: 1800
+  x_tag: "vendor claim, not production" {class: lbl; style.font-color: "#FFD666"}
+}
+
+foot: "vendor claims, quoted · not measurements · sources: pagerduty.com (SRE Agent GA) · Datadog press release, 2 Dec 2025\ndevin.ai/blog/introducing-devin-oncall (SREGym-Lite, 17 faults; leaderboard as of 15 Oct 2026)" {class: note}
+
+**.style.font-size: 36
+**.style.bold: true
+**.x_*.style.font-size: 28
+**.x_*.style.bold: false
+foot.style.font-size: 22
+foot.style.bold: false
+(** -> **)[*].style.font-size: 36
+(** -> **)[*].style.bold: true
+x_*.style.font-size: 28
+x_*.style.bold: false
