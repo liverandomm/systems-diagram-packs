@@ -1,0 +1,61 @@
+...@_style
+...@_style_v05
+...@_style_v06
+vars: {d2-config: {pad: 24}}
+grid-rows: 5
+grid-gap: 22
+
+pager: "" {
+  class: bad
+  width: 1500
+  grid-rows: 2
+  grid-gap: 8
+  t: "11:48 PM PDT · 19 Oct 2025 · AWS us-east-1" {class: lbl; height: 66; style.font-color: "#E6EDF7"}
+  x_art: "03:48 ART · 20 Oct" {class: lbl; height: 44; style.font-color: "#C9D4E8"}
+}
+
+desk: "" {
+  style.opacity: 0
+  grid-columns: 3
+  grid-gap: 60
+  agent: "AI agent\n(hypothetical)" {class: agent; width: 380; height: 160}
+  dash: "" {
+    class: svc; width: 420; height: 160
+    grid-rows: 2
+    grid-gap: 0
+    t: "dashboard\nerrors ↑" {class: lbl; height: 100}
+    x_ill: "illustrative" {class: lbl; height: 40; style.font-color: "#8C9EBF"}
+  }
+  human: "on-call\nhuman" {class: person; width: 220; height: 160}
+}
+
+chips: "" {
+  style.opacity: 0
+  grid-columns: 2
+  grid-gap: 60
+  inv: "Investigate → would help" {class: help; width: 680}
+  rec: "Recover → STUCK" {class: hurt; width: 680}
+}
+
+q: "" {
+  class: quote
+  width: 1500
+  grid-rows: 2
+  grid-gap: 8
+  t: "\"no established operational recovery procedure\"" {class: lbl; height: 56; style.font-color: "#C9D4E8"; style.italic: true}
+  x_src: "— AWS post-event summary (EC2 lease system)" {class: lbl; height: 44; style.font-color: "#8C9EBF"}
+}
+
+foot: "help / hurt = our analysis · source: aws.amazon.com/message/101925 · ART = PDT + 4 h" {class: note}
+
+**.style.font-size: 36
+**.style.bold: true
+**.x_*.style.font-size: 28
+**.x_*.style.bold: false
+foot.style.font-size: 22
+foot.style.bold: false
+(** -> **)[*].style.font-size: 36
+(** -> **)[*].style.bold: true
+pager.t.style.font-size: 46
+x_*.style.font-size: 28
+x_*.style.bold: false

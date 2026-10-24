@@ -1,0 +1,45 @@
+...@_style
+...@_style_v05
+...@_style_v06
+vars: {d2-config: {pad: 24}}
+grid-rows: 5
+grid-gap: 28
+
+head: "12h30m of write errors · us-central1 · 8 Oct 2026 · per Google" {class: bad; width: 1760}
+
+cap: "Add emergency capacity: BLOCKED" {
+  class: bad
+  style.stroke-dash: 5
+  width: 1760
+  x_q: "\"blocked by systemic regional capacity limits\" — Google" {class: lbl; style.font-color: "#FFC2CE"; style.italic: true}
+}
+
+gap: "" {
+  class: svc
+  width: 1760
+  grid-rows: 2
+  grid-gap: 0
+  t: "detected 04:50 PDT → first status-page update 11:24 PDT\n= 6h34m (our arithmetic)" {class: lbl; height: 110}
+  x_art: "08:50 ART → 15:24 ART" {class: lbl; height: 44; style.font-color: "#C9D4E8"}
+}
+
+row: "" {
+  style.opacity: 0
+  grid-columns: 2
+  grid-gap: 40
+  help: "would help · your own alerts, early" {class: help; width: 1100}
+  x_status: "Google: Service disruption" {class: ext; width: 620}
+}
+
+foot: "detection time from Google's final report (14 Oct) · our arithmetic · 11:24 PDT = first entry on the status page\nhelp = our analysis · 'Service disruption' = Google's label · times PDT (UTC−7), ART = PDT + 4 h\nsource: Google Cloud Service Health, status.cloud.google.com/incidents/mSFVt6PiP557bjRyYsut" {class: note}
+
+**.style.font-size: 36
+**.style.bold: true
+**.x_*.style.font-size: 28
+**.x_*.style.bold: false
+foot.style.font-size: 22
+foot.style.bold: false
+(** -> **)[*].style.font-size: 36
+(** -> **)[*].style.bold: true
+x_*.style.font-size: 28
+x_*.style.bold: false

@@ -1,0 +1,41 @@
+...@_style
+...@_style_v05
+...@_style_v06
+vars: {d2-config: {pad: 24}}
+grid-rows: 4
+grid-gap: 30
+
+c44: "44% require human involvement when AI\nremediates customer-facing systems" {
+  class: vendor
+  width: 1720
+  x_lab: "PagerDuty 2026 State of AI-First Operations · vendor\n1,000 business and IT leaders and developers" {class: lbl; style.font-color: "#C9D4E8"}
+}
+
+c77: "77% think autonomous AI action is valuable\nhighest skepticism by a wide margin" {
+  class: vendor
+  width: 1720
+  x_lab: "Grafana Labs Observability Survey 2026 · vendor · 1,363 responses · Oct 2025–Jan 2026" {class: lbl; style.font-color: "#C9D4E8"}
+}
+
+act: "Act = a decision · our analysis" {
+  class: hurt
+  width: 1720
+  grid-columns: 3
+  grid-gap: 30
+  a1: "turn automation off" {class: warn; width: 520}
+  a2: "block requests →\nusers see errors" {class: warn; width: 520}
+  a3: "verify the rollback" {class: warn; width: 520}
+}
+
+foot: "Grafana: 'valuable' = somewhat valuable + very valuable + critical (its note 2)\ntwo different vendor surveys, different questions and samples\nsources: pagerduty.com 2026 State of AI-First Operations (17 Mar 2026) · grafana.com/observability-survey/2026" {class: note}
+
+**.style.font-size: 36
+**.style.bold: true
+**.x_*.style.font-size: 28
+**.x_*.style.bold: false
+foot.style.font-size: 22
+foot.style.bold: false
+(** -> **)[*].style.font-size: 36
+(** -> **)[*].style.bold: true
+x_*.style.font-size: 28
+x_*.style.bold: false

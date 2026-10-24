@@ -1,0 +1,75 @@
+...@_style
+...@_style_v05
+...@_style_v06
+vars: {d2-config: {pad: 24}}
+grid-rows: 5
+grid-gap: 16
+
+head: "" {
+  style.opacity: 0
+  grid-columns: 2
+  grid-gap: 30
+  title: "AWS us-east-1 · 19–20 Oct 2025" {class: lbl; width: 760; height: 70}
+  tag: "automation, not AI · our framing" {class: warn; width: 820}
+}
+
+race: "DynamoDB DNS management (simplified, per AWS)" {
+  class: boundary
+  grid-columns: 3
+  grid-gap: 90
+  a: "" {
+    class: warn; width: 480
+    grid-rows: 2
+    grid-gap: 6
+    t: "DNS Enactor A\n(delayed)" {class: lbl; height: 110}
+    x_t: "its one check at start\nwent STALE → wrote an\nOLD plan over a newer one" {class: lbl; style.font-color: "#FFD666"}
+  }
+  rec: "" {
+    class: bad; width: 480
+    grid-rows: 2
+    grid-gap: 6
+    t: "regional endpoint\nDNS record: EMPTY" {class: lbl; height: 110}
+    x_t: "dynamodb.us-east-1\n.amazonaws.com" {class: lbl; style.font-color: "#FFC2CE"}
+  }
+  b: "" {
+    class: svc; width: 480
+    grid-rows: 2
+    grid-gap: 6
+    t: "DNS Enactor B" {class: lbl; height: 70}
+    x_t: "applied the newest plan;\nits clean-up deleted\nthat old plan" {class: lbl; style.font-color: "#C9D4E8"}
+  }
+  a -> rec: "" {class: fail}
+  b -> rec: "" {class: fail}
+}
+
+x_q: "\"a latent race condition in the DynamoDB DNS management system\nthat resulted in an incorrect empty DNS record\" — AWS post-event summary" {
+  class: quote
+  width: 1740
+}
+
+layer: "" {
+  style.opacity: 0
+  grid-columns: 2
+  grid-gap: 40
+  help: "would help · trace errors →\none empty DNS record" {class: help; width: 900}
+  t25: "" {
+    class: ok; width: 800
+    grid-rows: 2
+    grid-gap: 4
+    t: "DNS restored 2:25 AM PDT · 20 Oct" {class: lbl; height: 60}
+    x_art: "06:25 ART" {class: lbl; height: 44; style.font-color: "#C9D4E8"}
+  }
+}
+
+foot: "our analysis · AWS describes automated DNS management and names no AI · two of AWS's three DNS Enactors (one per AZ)\nsource: AWS post-event summary, aws.amazon.com/message/101925 · times as AWS reports them (PDT) · ART = PDT + 4 h" {class: note}
+
+**.style.font-size: 36
+**.style.bold: true
+**.x_*.style.font-size: 28
+**.x_*.style.bold: false
+foot.style.font-size: 22
+foot.style.bold: false
+(** -> **)[*].style.font-size: 36
+(** -> **)[*].style.bold: true
+x_*.style.font-size: 28
+x_*.style.bold: false

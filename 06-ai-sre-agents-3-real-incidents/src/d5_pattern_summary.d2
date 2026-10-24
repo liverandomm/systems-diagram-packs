@@ -1,0 +1,42 @@
+...@_style
+...@_style_v05
+...@_style_v06
+vars: {d2-config: {pad: 24}}
+grid-rows: 5
+grid-gap: 24
+
+tag: "our analysis · no agent was used" {class: ext; width: 760}
+
+cols: "" {
+  style.opacity: 0
+  grid-columns: 3
+  grid-gap: 30
+  aws: "AWS us-east-1\nOct 2025" {class: svc; width: 560}
+  gh: "GitHub\n17 Aug 2026" {class: svc; width: 560}
+  gcs: "Google Cloud Storage\nus-central1 · Oct 2026" {class: svc; width: 560}
+}
+
+inv: "Investigate: would help" {class: help; width: 1720}
+
+act: "Act · the risky step was a decision" {
+  class: hurt
+  width: 1720
+  grid-columns: 3
+  grid-gap: 30
+  a1: "turn\nautomation off" {class: warn; width: 520}
+  a2: "block requests →\nusers see errors" {class: warn; width: 520}
+  a3: "verify the\nrollback" {class: warn; width: 520}
+}
+
+foot: "our analysis of each company's own report (AWS post-event summary · GitHub RCA · Google incident report)\ngreen = would help · amber = the risky step is a decision" {class: note}
+
+**.style.font-size: 36
+**.style.bold: true
+**.x_*.style.font-size: 28
+**.x_*.style.bold: false
+foot.style.font-size: 22
+foot.style.bold: false
+(** -> **)[*].style.font-size: 36
+(** -> **)[*].style.bold: true
+x_*.style.font-size: 28
+x_*.style.bold: false

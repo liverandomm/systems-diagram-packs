@@ -1,0 +1,51 @@
+...@_style
+...@_style_v05
+...@_style_v06
+vars: {d2-config: {pad: 24}}
+grid-rows: 7
+grid-gap: 12
+
+head: "" {
+  style.opacity: 0
+  grid-columns: 2
+  grid-gap: 40
+  title: "GitHub · 17 Aug 2026 · per GitHub's RCA" {class: lbl; width: 940; height: 70}
+  tag: "two retry layers · our framing" {class: ext; width: 740}
+}
+
+l1: "shared gateway authentication path" {
+  class: boundary
+  width: 1720
+  direction: right
+  gw: "gateway\nretry logic" {class: warn; width: 560}
+  lbs: "internal load balancers\nOVERLOADED" {class: bad; width: 640}
+  gw -> lbs: "" {class: req_hot}
+}
+
+x_q1: "\"The problem was worsened by optimistic retry logic which overloaded\ninternal load balancers.\" — GitHub RCA" {class: quote; width: 1720}
+
+l2: "" {
+  style.opacity: 0
+  width: 1720
+  direction: right
+  cl: "client retry bug\n(VS Code, per GitHub)" {class: warn; width: 560}
+  cts: "Copilot Token Service" {class: bad; width: 640}
+  cl -> cts: "" {class: req_hot}
+}
+
+amp: "~10× · 7–9K → 70–100K RPS (per GitHub)" {class: bad; width: 1720}
+
+x_rec: "delayed recovery for the Copilot Token Service" {class: lbl; width: 1720; style.font-color: "#FFC2CE"}
+
+foot: "simplified · GitHub doesn't publish this topology · 'two retry layers' = our framing\n(GitHub: \"Review retry and backoff limits across gateways and clients\") · incident 13:28–21:15 UTC (10:28–18:15 ART)\nsources: githubstatus.com/incidents/zkxwbgr0cnmx (RCA) · github.blog availability report, Aug 2026" {class: note}
+
+**.style.font-size: 36
+**.style.bold: true
+**.x_*.style.font-size: 28
+**.x_*.style.bold: false
+foot.style.font-size: 22
+foot.style.bold: false
+(** -> **)[*].style.font-size: 36
+(** -> **)[*].style.bold: true
+x_*.style.font-size: 28
+x_*.style.bold: false

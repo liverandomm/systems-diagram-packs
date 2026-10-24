@@ -1,0 +1,48 @@
+# D4 · The incomplete rollback (script_v2: B11; B02 end flash). SKETCH v0.5.2 · Red Team: approved; pending final approval by Claudio.
+# ONLY what Google names, verbatim (incident report, 14 Oct 2026; IU = line of the incident page text (see README)):
+#  - IU:127 "A configuration change was deployed to disable the traffic sorting optimization"
+#  - IU:121 "... caused by an incomplete rollback of an upload planner feature ..." (short quote only; the full sentence is the Animador's separate card)
+#  - IU:129 "The incident was permanently resolved when engineering fully reverted the problematic load balancing configuration change"
+# Three SEPARATE boxes SIDE BY SIDE, NO arrows, NO common frame (Red Team answer 13, v0.5.1; script_v2 B11 "side by side, with no arrows between them").
+# Column order = narration order (B11): b1 disable (8 Oct) · b3 full revert (date NOT published) · b2 upload planner (9 Oct). Date = first line(s) of each box.
+# Title: Red Team C5. Text bands: KEY >= 36 px, x_* SECONDARY >= 28 px, foot SOURCE >= 22 px. Animation ids: title, cols.b1, cols.b3, cols.b2, disc, foot.
+...@_style
+...@_style_v05
+vars: {d2-config: {pad: 24}}
+grid-rows: 4
+grid-gap: 30
+
+title: "The incomplete rollback · three names in Google's report, drawn as three boxes" {shape: text; style: {font: mono; font-color: "#E6EDF7"}}
+
+cols: "" {
+  style.opacity: 0
+  grid-columns: 3
+  grid-gap: 26
+
+  b1: "8 Oct · us-central1\nregion\n\ndisable traffic\nsorting optimization" {class: warn; width: 570; height: 470
+    x_t: "\"A configuration change\nwas deployed to disable\nthe traffic sorting\noptimization\"\n· Google incident report" {shape: text; style: {font: mono; font-color: "#C9D4E8"}}
+  }
+
+  b3: "date NOT published\n\nfully reverted load\nbalancing config\nchange" {class: ok; width: 570; height: 470
+    x_t: "\"permanently resolved\"\nwhen engineering \"fully\nreverted\" the change\n· Google incident report" {shape: text; style: {font: mono; font-color: "#C9D4E8"}}
+  }
+
+  b2: "recurrence:\n9 Oct · 04:05–09:46 PT\nus-central1-b\n\n'upload planner'\nfeature · cause of the\nrecurrence, per Google" {class: bad; width: 570; height: 470
+    x_t: "\"an incomplete rollback\nof an upload planner\nfeature\"\n· Google incident report" {shape: text; style: {font: mono; font-color: "#FFC2CE"}}
+  }
+}
+
+disc: "⚠ Google doesn't say how the three relate" {
+  class: discrepancy
+  width: 1762
+  x_t: "not published: what the upload planner is · why the rollback was incomplete\nwhen the full revert happened" {shape: text; style: {font: mono; font-color: "#FFD666"}}
+}
+
+foot: "three names in Google's report · side by side · no arrows · amber dashed = the record disagrees or has a gap\nsource: Google incident report, 14 Oct 2026 · status.cloud.google.com/incidents/mSFVt6PiP557bjRyYsut" {class: note}
+
+**.style.font-size: 36
+**.style.bold: true
+**.x_*.style.font-size: 28
+**.x_*.style.bold: false
+foot.style.font-size: 22
+foot.style.bold: false

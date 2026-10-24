@@ -1,0 +1,25 @@
+# Shared continuity strip for the D3 scenes (d3a1, d3a2, d3b). SAME SCALE everywhere: 60 px = 1 h,
+# 8 Oct 04:00 PT → 9 Oct 09:46 PT. Widths: 12 h 30 min = 750, 11 h 35 min = 695, 5 h 41 min = 341.
+# TWO SEPARATE WINDOWS with a grey gap. There is NO bar for the 18 h 11 min total (that number is two windows added, per Google).
+# Times: Google incident report, 14 Oct 2026 (status.cloud.google.com/incidents/mSFVt6PiP557bjRyYsut). Gap label: Red Team answer 16.
+# Each scene dims the windows it is not about (style.opacity) and thickens its own.
+# Labels = KEY (>= 36 px at 1080p); x_ children = SECONDARY (>= 28 px).
+label: ""
+style: {opacity: 1; fill: "#0B1020"; stroke: "#0B1020"}
+grid-columns: 3
+grid-gap: 0
+w1: "12 h 30 min" {
+  width: 750
+  style: {fill: "#3A1420"; stroke: "#FF4C6E"; stroke-width: 2; font-color: "#E6EDF7"; font: mono; bold: true}
+  x_t: "8 Oct · 04:00→16:30 PT\nus-central1 region" {shape: text; style: {font: mono; font-color: "#E6EDF7"}}
+}
+gap: "11 h 35 min" {
+  width: 695
+  style: {fill: "#12192E"; stroke: "#8C9EBF"; stroke-width: 2; stroke-dash: 4; font-color: "#8C9EBF"; font: mono; bold: true}
+  x_t: "between windows (our arithmetic)\nno impact reported by Google" {shape: text; style: {font: mono; font-color: "#8C9EBF"}}
+}
+w2: "5 h 41 min" {
+  width: 341
+  style: {fill: "#3A1420"; stroke: "#FF4C6E"; stroke-width: 2; font-color: "#E6EDF7"; font: mono; bold: true}
+  x_t: "9 Oct 04:05→\n09:46 · zone\nus-central1-b" {shape: text; style: {font: mono; font-color: "#E6EDF7"}}
+}

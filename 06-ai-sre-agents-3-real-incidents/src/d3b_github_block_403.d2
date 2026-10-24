@@ -1,0 +1,40 @@
+...@_style
+...@_style_v05
+...@_style_v06
+vars: {d2-config: {pad: 24}}
+grid-rows: 5
+grid-gap: 26
+
+title: "GitHub · 17 Aug 2026 · where an agent would help, where it would hurt" {class: lbl; width: 1800; height: 70}
+
+row: "" {
+  style.opacity: 0
+  grid-columns: 2
+  grid-gap: 60
+  help: "would help\nspot the ~10× jump" {class: help; width: 760; height: 190}
+  hurt: "would hurt · suggested step" {
+    class: hurt
+    direction: right
+    s1: "retry /\nrestart" {class: warn}
+    s2: "adds load to an\noverloaded path" {class: bad}
+    s1 -> s2: "" {class: req_hot}
+    s2 -> s1: "loop" {class: fail}
+  }
+}
+
+blk: "blocked incoming token requests with a 403 (per GitHub)" {class: ok; width: 1800}
+
+x_ramp: "then ramped traffic back gradually" {class: ok; width: 1800}
+
+foot: "per GitHub's RCA: the 403 was applied at the load balancers in Northern VA (the overload in d3a was Central US)\nhelp/hurt = our analysis · the 403 was one of several measures (with reducing gateway retries and pausing HAProxy)\nsource: githubstatus.com/incidents/zkxwbgr0cnmx (RCA, posted 17 Aug 2026 21:15 UTC)" {class: note}
+
+**.style.font-size: 36
+**.style.bold: true
+**.x_*.style.font-size: 28
+**.x_*.style.bold: false
+foot.style.font-size: 22
+foot.style.bold: false
+(** -> **)[*].style.font-size: 36
+(** -> **)[*].style.bold: true
+x_*.style.font-size: 28
+x_*.style.bold: false

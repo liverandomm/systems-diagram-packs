@@ -1,0 +1,56 @@
+...@_style
+...@_style_v05
+...@_style_v06
+vars: {d2-config: {pad: 24}}
+grid-rows: 6
+grid-gap: 26
+
+title: "Google Cloud Storage · two separate windows · per Google" {class: lbl; width: 1786; height: 70}
+
+row_oct8: "" {
+  style.opacity: 0
+  grid-columns: 2
+  grid-gap: 0
+  label_oct8: "8 Oct · us-central1 · 12h30m" {class: bad; width: 750}
+  pad_r: "" {style.opacity: 0; width: 1036; height: 10}
+}
+
+bars: "" {
+  style.opacity: 0
+  grid-columns: 3
+  grid-gap: 0
+  bar_oct8: "" {width: 750; height: 170; style: {fill: "#3A1420"; stroke: "#FF4C6E"; stroke-width: 4}}
+  gap: "" {width: 695; height: 170; style: {fill: "#12192E"; stroke: "#8C9EBF"; stroke-width: 2; stroke-dash: 4}}
+  bar_oct9: "" {width: 341; height: 170; style: {fill: "#3A1420"; stroke: "#FF4C6E"; stroke-width: 4}}
+}
+
+row_oct9: "" {
+  style.opacity: 0
+  grid-columns: 2
+  grid-gap: 0
+  pad_l: "" {style.opacity: 0; width: 750; height: 10}
+  card_oct9: "9 Oct · us-central1-b only · 5h41m" {
+    class: bad
+    width: 1036
+    x_q: "'an incomplete rollback' (Google)" {class: lbl; style.font-color: "#FFC2CE"}
+  }
+}
+
+hurt: "would hurt · rollback marked done when the command returns" {
+  class: hurt
+  width: 1786
+  x_t: "our analysis: done = every changed part verified back" {class: lbl; style.font-color: "#FFD666"}
+}
+
+foot: "to scale, 60 px = 1 h · grey = 11 h 35 min between the windows (our arithmetic), not an all-clear\n8 Oct 04:00–16:30 PDT (08:00–20:30 ART), 'Incident End' (Google: \"temporary relief\")\n9 Oct 04:05–09:46 PDT (08:05–13:46 ART), zone us-central1-b only\nsource: Google incident report, 14 Oct 2026 · status.cloud.google.com/incidents/mSFVt6PiP557bjRyYsut" {class: note}
+
+**.style.font-size: 36
+**.style.bold: true
+**.x_*.style.font-size: 28
+**.x_*.style.bold: false
+foot.style.font-size: 22
+foot.style.bold: false
+(** -> **)[*].style.font-size: 36
+(** -> **)[*].style.bold: true
+x_*.style.font-size: 28
+x_*.style.bold: false

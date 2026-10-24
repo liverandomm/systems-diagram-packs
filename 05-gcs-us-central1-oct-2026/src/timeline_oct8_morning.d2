@@ -1,0 +1,58 @@
+# D3a1 · Timeline, Thu 8 Oct 2026, 04:00–11:24 PT (script_v2: B07).
+# Pack draft (see CHANGELOG). Split from v0.3 d3a (Red Team answer 17: 7 cards don't fit at 36 px).
+# Times US/Pacific (PT = UTC−7 (Pacific daylight time)) as Google reports them; ART = UTC-3 = PT + 4 h.
+# Sources: status.cloud.google.com/incidents/mSFVt6PiP557bjRyYsut: live updates 8 Oct (IU:1-64), preliminary report (IU:67-98),
+# incident report 14 Oct (IU:100-140); IU = line of the incident page text (see README).
+# Text bands: labels KEY >= 36 px, x_* SECONDARY >= 28 px, foot SOURCE >= 22 px, at 1920x1080.
+...@_style
+...@_style_v05
+vars: {d2-config: {pad: 24}}
+grid-rows: 5
+grid-gap: 22
+
+title: "Thu 8 Oct 2026 · morning · times PT and ART" {
+  shape: text
+  style: {font: mono; bold: true; font-color: "#E6EDF7"}
+  x_sub: "Google Cloud Storage, us-central1 · elevated write latency and write error rates (per Google)" {shape: text; style: {font: mono; font-color: "#8C9EBF"}}
+}
+
+strip: @_strip_oct8_9
+strip.w1.style.stroke-width: 6
+strip.gap.style.opacity: 0.4
+strip.w2.style.opacity: 0.4
+
+cards: "" {
+  style.opacity: 0
+  grid-columns: 5
+  grid-gap: 18
+  e1: "04:00 PT\n08:00 ART\nIMPACT\nSTARTS" {class: bad; width: 350
+    x_t: "both incident\nreports" {shape: text; style: {font: mono; font-color: "#C9D4E8"}}
+  }
+  e2: "04:50 PT\n08:50 ART\nDETECTED" {class: warn; width: 350
+    x_t: "internal\ntelemetry\n(final report)" {shape: text; style: {font: mono; font-color: "#C9D4E8"}}
+  }
+  e3: "05:19 PT\n09:19 ART\n⚠ LIVE UPDATES\nSAID" {class: discrepancy; width: 350
+    x_t: "start as first\nstated · both\nreports: 04:00" {shape: text; style: {font: mono; font-color: "#FFD666"}}
+  }
+  e4: "10:57 PT\n14:57 ART\nFIRST\nIMPROVEMENT" {class: warn; width: 350
+    x_t: "internal\nmonitoring\n(11:55 update)" {shape: text; style: {font: mono; font-color: "#C9D4E8"}}
+  }
+  e5: "11:24 PT\n15:24 ART\nFIRST STATUS-\nPAGE UPDATE" {class: warn; width: 350
+    x_t: "\"Workaround:\nNone at this\ntime\"" {shape: text; style: {font: mono; font-color: "#C9D4E8"}}
+  }
+}
+
+gapnote: "04:50 → 11:24 PT = 6 h 34 min" {
+  class: warn
+  width: 1400
+  x_t: "detection → first status-page update (our arithmetic) · impact start → first update: 7 h 24 min" {shape: text; style: {font: mono; font-color: "#C9D4E8"}}
+}
+
+foot: "cards in order, spacing not to scale · amber dashed = the record disagrees or has a gap · next: 8 Oct afternoon →\nsource: status.cloud.google.com/incidents/mSFVt6PiP557bjRyYsut (live updates, preliminary and final reports)" {class: note}
+
+**.style.font-size: 36
+**.style.bold: true
+**.x_*.style.bold: false
+foot.style.bold: false
+**.x_*.style.font-size: 28
+foot.style.font-size: 22
