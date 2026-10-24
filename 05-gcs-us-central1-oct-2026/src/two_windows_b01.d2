@@ -1,0 +1,53 @@
+# D0 · B01 cold open, frame 0: two separate windows at the same scale (script_v2 B01, VISUAL column). Pack draft (see CHANGELOG).
+# STATIC 16:9 frame for the Animador (the bars grow). Labels are EXACTLY the B01 labels in script_v2.md:
+#   "12h30m of write errors" · chip "us-central1 · 8 Oct" · "Mitigated… then back: 5h41m · us-central1-b only · 9 Oct" (drawn on two lines: "Mitigated… then back: 5h41m" / "us-central1-b only · 9 Oct", Red Team m2) · source line "per Google's incident report".
+# Scale = the D3 strip: 60 px = 1 h. bar_oct8 = 12 h 30 min = 750 px (8 Oct 04:00→16:30 PT, us-central1 region);
+# gap = 11 h 35 min = 695 px (grey, unlabelled here; our arithmetic); bar_oct9 = 5 h 41 min = 341 px (9 Oct 04:05→09:46 PT, zone us-central1-b only).
+# Two bars, NEVER one 18 h bar. Source: Google incident report, 14 Oct 2026, status.cloud.google.com/incidents/mSFVt6PiP557bjRyYsut (IU:104–113).
+# v0.5 (Red Team m2): chip inside x 0–750 (over bar_oct8); the 9 Oct card starts at x = 750 and ends at 1786.
+# Animation layers: Systems, Drawn production files (not in the pack).
+...@_style
+...@_style_v05
+vars: {d2-config: {pad: 24}}
+grid-rows: 4
+grid-gap: 40
+
+row_oct8: "" {
+  style.opacity: 0
+  grid-columns: 2
+  grid-gap: 0
+  label_oct8: "" {
+    style.opacity: 0
+    width: 750
+    grid-rows: 2
+    grid-gap: 16
+    title_oct8: "12h30m of write errors" {shape: text; style: {font: mono; font-color: "#E6EDF7"}; style.font-size: 54}
+    chip_oct8: "us-central1 · 8 Oct" {class: bad; width: 520}
+  }
+  pad_r: "" {style.opacity: 0; width: 1036; height: 10}
+}
+
+bars: "" {
+  style.opacity: 0
+  grid-columns: 3
+  grid-gap: 0
+  bar_oct8: "" {width: 750; height: 220; style: {fill: "#3A1420"; stroke: "#FF4C6E"; stroke-width: 4}}
+  gap: "" {width: 695; height: 220; style: {fill: "#12192E"; stroke: "#8C9EBF"; stroke-width: 2; stroke-dash: 4}}
+  bar_oct9: "" {width: 341; height: 220; style: {fill: "#3A1420"; stroke: "#FF4C6E"; stroke-width: 4}}
+}
+
+row_oct9: "" {
+  style.opacity: 0
+  grid-columns: 2
+  grid-gap: 0
+  pad_l: "" {style.opacity: 0; width: 750; height: 10}
+  card_oct9: "Mitigated… then back: 5h41m\nus-central1-b only · 9 Oct" {class: bad; width: 1036}
+}
+
+foot: "per Google's incident report" {class: note}
+
+**.style.font-size: 36
+**.style.bold: true
+row_oct8.label_oct8.title_oct8.style.font-size: 54
+foot.style.font-size: 22
+foot.style.bold: false

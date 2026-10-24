@@ -1,0 +1,15 @@
+# V5 additions to the shared pack theme (_style.d2 is copied unchanged from pack 04).
+# New components. Same palette, no new colors.
+classes: {
+  # Component whose internals the vendor did NOT publish. Solid near-black, double border, amber label.
+  blackbox: {style: {fill: "#05070F"; stroke: "#8C9EBF"; stroke-width: 3; double-border: true; font-color: "#FFB803"; border-radius: 4; font: mono; bold: true}}
+  # A fact where two sources (or two updates of the same source) disagree. Amber dashed.
+  discrepancy: {style: {fill: "#1A1606"; stroke: "#FFB803"; stroke-width: 2; stroke-dash: 5; font-color: "#FFD666"; border-radius: 10; font: mono}}
+  # Edges: request = blue, failed response = red, bypassed/unknown = dashed.
+  req: {style: {stroke: "#4CC9F0"; stroke-width: 3; font-color: "#4CC9F0"}}
+  req_hot: {style: {stroke: "#FF4C6E"; stroke-width: 6; font-color: "#FF4C6E"}}
+  fail: {style: {stroke: "#FF4C6E"; stroke-width: 2; stroke-dash: 4; font-color: "#FF4C6E"}}
+  unknown: {style: {stroke: "#8C9EBF"; stroke-width: 2; stroke-dash: 6; font-color: "#8C9EBF"}}
+  # (v0.3) The to-scale duration ribbon is now its own shared component, src/_strip_oct8_9.d2, with inline styles
+  # (an imported map can't rely on classes); span_bad/span_ok were removed.
+}

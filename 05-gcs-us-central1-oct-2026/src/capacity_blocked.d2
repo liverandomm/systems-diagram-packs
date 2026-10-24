@@ -1,0 +1,45 @@
+# D1c · 8 Oct 2026, mitigation step 1: emergency capacity for the region, BLOCKED (script_v2: B04; also B08 callback).
+# Pack draft (see CHANGELOG). Split out of d1b in v0.4 (key labels >= 36 px don't fit with the bypass on one screen).
+# Arrow points at the REGION border, not at the nodes (Red Team C3, script_v2 B04). Google doesn't say what the limits were.
+# Quote (literal, v0.5.3): "Engineers initially attempted to dynamically allocate additional emergency capacity to the affected region,
+# but this was blocked by systemic regional capacity limits." (incident report, IU:125). Source: status.cloud.google.com/incidents/mSFVt6PiP557bjRyYsut.
+# Text bands: labels KEY >= 36 px, x_* SECONDARY >= 28 px, foot SOURCE >= 22 px, at 1920x1080.
+...@_style
+...@_style_v05
+vars: {d2-config: {pad: 24}}
+grid-rows: 3
+grid-gap: 30
+
+title: "Google Cloud Storage · us-central1 · 8 Oct 2026 · step 1" {
+  shape: text
+  style: {font: mono; font-color: "#E6EDF7"}
+  x_sub: "the first mitigation step Google lists · time NOT published" {shape: text; style: {font: mono; font-color: "#8C9EBF"}}
+}
+
+main: "" {
+  style.opacity: 0
+  grid-rows: 2
+  grid-gap: 90
+  cap: "add emergency capacity for the region\nBLOCKED" {class: bad; style.stroke-dash: 5; width: 1000
+    x_t: "\"blocked by systemic regional capacity limits\" · Google" {shape: text; style: {font: mono; font-color: "#FFC2CE"}}
+  }
+  region: "us-central1 region" {
+    class: boundary
+    grid-columns: 2
+    grid-gap: 40
+    lb: "GCS load balancing\nlayer" {class: svc; width: 520}
+    nodes: "storage backend nodes\nsome with low\nserving capacity" {class: warn; width: 520}
+  }
+  cap -> region: "attempted for the region · blocked" {class: fail}
+}
+
+foot: "Google doesn't say what those limits were · the arrow ends at the region border: Google names the region, not nodes\nsource: incident report, 14 Oct 2026 · status.cloud.google.com/incidents/mSFVt6PiP557bjRyYsut" {class: note}
+
+**.style.font-size: 36
+**.style.bold: true
+**.x_*.style.font-size: 28
+**.x_*.style.bold: false
+foot.style.font-size: 22
+foot.style.bold: false
+(** -> **)[*].style.font-size: 36
+(** -> **)[*].style.bold: true

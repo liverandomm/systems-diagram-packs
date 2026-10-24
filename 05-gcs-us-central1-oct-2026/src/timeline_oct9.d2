@@ -1,0 +1,57 @@
+# D3b · Timeline, Fri 9 Oct 2026, the recurrence in us-central1-b (script_v2: B09 strip + gap card only,
+# Animation layers: Systems, Drawn production files (not in the pack).
+# Times US/Pacific (PT = UTC−7 (Pacific daylight time)) as Google reports them; ART = UTC-3 = PT + 4 h.
+# Sources: status.cloud.google.com/incidents/mSFVt6PiP557bjRyYsut (last live update 8 Oct 13:48 PT; preliminary report 9 Oct 09:44 PT;
+# incident report 14 Oct 00:15 PT); GCS product history page ("1 day, 6 hours").
+# Gap card: exact Red Team C2 wording, plus "(Google's label)" so the classification reads as attributed (Claudio 17/10: our word is "incident"). The preliminary report (09:44) went out DURING the recurrence and does not mention it.
+# NO bar for 18 h 11 min (Guion D3): it is text only, two windows added, per Google. Cause and full revert live in D4 (no times published).
+# Text bands: labels KEY >= 36 px, x_* SECONDARY >= 28 px, foot SOURCE >= 22 px, at 1920x1080.
+...@_style
+...@_style_v05
+vars: {d2-config: {pad: 24}}
+grid-rows: 6
+grid-gap: 16
+
+title: "Fri 9 Oct 2026 · it came back · zone us-central1-b" {shape: text; style: {font: mono; font-color: "#E6EDF7"}}
+
+strip: @_strip_oct8_9
+strip.w2.style.stroke-width: 6
+strip.w1.style.opacity: 0.4
+
+g0: "⚠ no status update for 19 h 56 min" {
+  class: discrepancy
+  width: 1786
+  x_t: "none mentioned the recurrence · incident still shown as 'Service disruption' (Google's label)\n8 Oct 13:48 PT (17:48 ART) → 9 Oct 09:44 PT (13:44 ART)" {shape: text; style: {font: mono; font-color: "#FFD666"}}
+}
+
+cards: "" {
+  style.opacity: 0
+  grid-columns: 4
+  grid-gap: 22
+  f1: "04:05 PT\n08:05 ART\nBACK ·\nus-central1-b only" {class: bad; width: 430
+    x_t: "(final report)" {shape: text; style: {font: mono; font-color: "#C9D4E8"}}
+  }
+  f2: "09:44 PT\n13:44 ART\nPRELIMINARY\nREPORT" {class: discrepancy; width: 430
+    x_t: "marked Available ·\ncovers 8 Oct only" {shape: text; style: {font: mono; font-color: "#FFD666"}}
+  }
+  f3: "09:46 PT\n13:46 ART\nRECURRENCE\nENDS" {class: warn; width: 430
+    x_t: "(final report)" {shape: text; style: {font: mono; font-color: "#C9D4E8"}}
+  }
+  f4: "14 Oct 00:15 PT\n04:15 ART\nFINAL REPORT" {class: svc; width: 430
+    x_t: "first mention of the\nrecurrence on Google's\npublic incident page" {shape: text; style: {font: mono; font-color: "#C9D4E8"}}
+  }
+}
+
+tot: "18 h 11 min in two windows (12 h 30 min + 5 h 41 min), per Google\n1 day, 6 hours = wall clock (product history page)" {
+  class: svc
+  width: 1786
+}
+
+foot: "cards in order, spacing not to scale · amber dashed = the record disagrees or has a gap · as the page shows today\nwall clock 8 Oct 04:00 → 9 Oct 09:46 PT = 29 h 46 min (our arithmetic) · cause: next scene\nsources: status.cloud.google.com/incidents/mSFVt6PiP557bjRyYsut · GCS product history page" {class: note}
+
+**.style.font-size: 36
+**.style.bold: true
+**.x_*.style.font-size: 28
+**.x_*.style.bold: false
+foot.style.font-size: 22
+foot.style.bold: false

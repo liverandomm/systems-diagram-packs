@@ -1,0 +1,71 @@
+# D1b · Topology on 8 Oct 2026: the traffic sorting optimization bypasses capacity-aware routing (script_v2: B02 flash, B05, B06).
+# Pack draft (see CHANGELOG). SIMPLIFIED: Google does not publish GCS's internal topology.
+# Every box is a component NAMED in Google's incident report (14 Oct 2026); placement and arrows are our drawing.
+# Black box (Red Team C7, script_v2 B05): "traffic sorting optimization · Google doesn't describe how it works". Nothing inside it is drawn.
+# v0.4 split: emergency capacity + the arrow to the REGION border (Red Team C3) moved to d1c so key labels reach 36 px.
+# The metadata database issue moved to d3a2 (step 4).
+# Source: status.cloud.google.com/incidents/mSFVt6PiP557bjRyYsut.
+# Text bands: labels KEY >= 36 px, x_* SECONDARY >= 28 px, foot SOURCE >= 22 px, at 1920x1080.
+...@_style
+...@_style_v05
+vars: {d2-config: {pad: 24}}
+grid-rows: 3
+grid-gap: 24
+
+title: "Google Cloud Storage · us-central1 · 8 Oct 2026, 04:00–16:30 PT" {
+  shape: text
+  style: {font: mono; font-color: "#E6EDF7"}
+}
+
+main: "" {
+  style.opacity: 0
+  grid-columns: 2
+  grid-gap: 30
+  side: "" {
+    style.opacity: 0
+    grid-rows: 2
+    grid-gap: 40
+    clients: "customers\nuploads ·\nWriteObject" {class: person; width: 220; height: 180}
+    resp: "HTTP 503\nUNAVAILABLE on\nWriteObject ·\nclient-side\ntimeouts" {class: bad; width: 400
+      x_t: "primarily, per\nGoogle" {shape: text; style: {font: mono; font-color: "#FFC2CE"}}
+    }
+  }
+  region: "us-central1 region" {
+    class: boundary
+    grid-columns: 2
+    grid-gap: 40
+    lb: "GCS load balancing layer" {
+      class: boundary
+      grid-rows: 2
+      grid-gap: 115
+      opt: "traffic sorting\noptimization\n■ GOOGLE DOESN'T\nDESCRIBE HOW IT\nWORKS ■" {class: blackbox; width: 415}
+      car: "capacity-aware\nrouting: BYPASSED" {class: ext; width: 415}
+      opt -> car: "\"inadvertently\nbypassing\"" {class: fail}
+    }
+    nodes: "storage backend nodes" {
+      class: boundary
+      grid-rows: 2
+      grid-gap: 30
+      hot: "a small fraction\nof nodes · low\nserving capacity" {class: bad; width: 415
+        x_t: "\"an overwhelming\nproportion of incoming\nwrite traffic\" →\nresources exhausted ·\ningestion timing out" {shape: text; style: {font: mono; font-color: "#FFC2CE"}}
+      }
+      rest: "the other storage\nbackend nodes" {class: ext; width: 415
+        x_t: "(share not published)" {shape: text; style: {font: mono; font-color: "#C9D4E8"}}
+      }
+    }
+    lb.opt -> nodes.hot {class: req_hot}
+    lb.opt -> nodes.rest: "?" {class: unknown}
+  }
+  side.clients -> region.lb.opt: "writes" {class: req}
+}
+
+foot: "simplified, per Google's incident report (14 Oct 2026) · boxes = components Google names; placement and arrows are ours\nother regions and Google Cloud services unaffected (per Google) · successful writes also much slower · early updates:\nsome reads slower / errors (not in final report) · source: status.cloud.google.com/incidents/mSFVt6PiP557bjRyYsut" {class: note}
+
+**.style.font-size: 36
+**.style.bold: true
+**.x_*.style.font-size: 28
+**.x_*.style.bold: false
+foot.style.font-size: 22
+foot.style.bold: false
+(** -> **)[*].style.font-size: 36
+(** -> **)[*].style.bold: true

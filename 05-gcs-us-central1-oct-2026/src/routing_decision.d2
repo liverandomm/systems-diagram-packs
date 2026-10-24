@@ -1,0 +1,62 @@
+# D2 · Routing decision, side by side: capacity-aware routing (normal) vs 8 Oct (the optimization bypasses it) (script_v2: B03, B05).
+# Pack draft (see CHANGELOG). Reuses the d1a/d1b components and labels.
+# Google names: "standard capacity-aware routing logic", "traffic sorting optimization configuration update", "inadvertently bypassing",
+# "a small fraction of storage backend nodes ... overwhelming proportion of incoming write traffic despite having low available serving capacity"
+# (incident report, 14 Oct 2026). Diamond and exit wording: Red Team C4 / answer 12 and script_v2 B03. Black box: Red Team C7.
+# Google doesn't publish how capacity-aware routing decides: the diamond is OUR simplification; exit weights are illustrative.
+# Text bands: labels KEY >= 36 px, x_* SECONDARY >= 28 px, foot SOURCE >= 22 px, at 1920x1080.
+...@_style
+...@_style_v05
+vars: {d2-config: {pad: 24}}
+grid-rows: 3
+grid-gap: 20
+
+title: "Same write, two routing paths · left: normal · right: 8 Oct 2026" {shape: text; style: {font: mono; font-color: "#E6EDF7"}}
+
+cmp: "" {
+  style.opacity: 0
+  grid-columns: 2
+  grid-gap: 40
+
+  a: "normal" {
+    class: boundary
+    grid-rows: 3
+    grid-gap: 34
+    w: "write request" {class: svc; width: 740}
+    q: "capacity-aware routing\nhow it decides: not published\n(our simplification)" {shape: diamond; style: {fill: "#131B30"; stroke: "#3DDB96"; stroke-width: 2; font-color: "#E6EDF7"; font: mono}; width: 740; height: 250}
+    out: "" {
+      style.opacity: 0
+      grid-columns: 2
+      grid-gap: 30
+      ok1: "more room →\nmore writes" {class: ok; width: 355}
+      low: "low serving\ncapacity →\nless traffic" {class: warn; width: 355
+        x_t: "(illustrative)" {shape: text; style: {font: mono; font-color: "#C9D4E8"}}
+      }
+    }
+    w -> q {class: req}
+    q -> out.ok1 {class: req; style.stroke-width: 9}
+    q -> out.low {class: req; style.stroke-width: 2}
+  }
+
+  b: "8 Oct" {
+    class: boundary
+    grid-rows: 3
+    grid-gap: 34
+    w: "write request" {class: svc; width: 740}
+    bb: "traffic sorting optimization\n■ GOOGLE DOESN'T DESCRIBE\nHOW IT WORKS ■\ncapacity-aware routing:\nBYPASSED" {class: blackbox; width: 740; height: 250}
+    hot: "a small fraction of nodes\n· low serving capacity" {class: bad; width: 740
+      x_t: "\"an overwhelming proportion of\nincoming write traffic\" · Google" {shape: text; style: {font: mono; font-color: "#FFC2CE"}}
+    }
+    w -> bb {class: req}
+    bb -> hot {class: req_hot}
+  }
+}
+
+foot: "Google doesn't publish how capacity-aware routing decides; the diamond is our simplification · arrow weights are illustrative\nquotes: Google incident report, 14 Oct 2026 · status.cloud.google.com/incidents/mSFVt6PiP557bjRyYsut" {class: note}
+
+**.style.font-size: 36
+**.style.bold: true
+**.x_*.style.font-size: 28
+**.x_*.style.bold: false
+foot.style.font-size: 22
+foot.style.bold: false

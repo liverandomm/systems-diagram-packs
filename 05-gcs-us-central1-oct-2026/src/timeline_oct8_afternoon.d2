@@ -1,0 +1,60 @@
+# D3a2 · Timeline, Thu 8 Oct 2026, 13:48–16:30 PT + the day-1 mitigation (script_v2: B08, B09 13:48 card, B10 16:30 card).
+# Pack draft (see CHANGELOG). Split from v0.3 d3a (Red Team answer 17).
+# 16:30 = "Incident End" of the first window; wording "MITIGATED" per Red Team A1/D1 and script_v2 B10: Google says the day-1 steps
+# "provided temporary relief" and the incident was "permanently resolved" only after the full revert (IU:129). Our word: "mitigated".
+# Mitigation steps: in the order Google lists them (IU:124-128); times NOT published; only step 1 is explicitly first ("initially").
+# Sources: status.cloud.google.com/incidents/mSFVt6PiP557bjRyYsut (IU = line of the incident page text (see README)).
+...@_style
+...@_style_v05
+vars: {d2-config: {pad: 24}}
+grid-rows: 5
+grid-gap: 16
+
+title: "Thu 8 Oct 2026 · afternoon · Google Cloud Storage, us-central1" {
+  shape: text
+  style: {font: mono; font-color: "#E6EDF7"}
+}
+
+strip: @_strip_oct8_9
+strip.w1.style.stroke-width: 6
+strip.gap.style.opacity: 0.4
+strip.w2.style.opacity: 0.4
+
+cards: "" {
+  style.opacity: 0
+  grid-columns: 2
+  grid-gap: 30
+  e6: "13:48 PT · 17:48 ART\n⚠ LAST LIVE UPDATE\nnext entry 19 h 56 min later" {class: discrepancy; width: 870
+    x_t: "Google: \"an update by … 16:00 PDT\"\nnext entry: 9 Oct preliminary report" {shape: text; style: {font: mono; font-color: "#FFD666"}}
+  }
+  e7: "16:30 PT · 20:30 ART\nFIRST WINDOW ENDS\nMITIGATED" {class: warn; width: 870
+    x_t: "Google: \"provided temporary relief\"\n\"Incident End\"" {shape: text; style: {font: mono; font-color: "#C9D4E8"}}
+  }
+}
+
+mit: "mitigation · in the order Google lists it · times NOT published" {
+  class: boundary
+  grid-columns: 4
+  grid-gap: 24
+  m1: "1 · ADD CAPACITY\nBLOCKED" {class: bad; width: 400
+    x_t: "for the region ·\n\"systemic regional\ncapacity limits\"" {shape: text; style: {font: mono; font-color: "#C9D4E8"}}
+  }
+  m2: "2 · DRAIN" {class: warn; width: 400
+    x_t: "from the most\noverloaded storage\nbackend nodes" {shape: text; style: {font: mono; font-color: "#C9D4E8"}}
+  }
+  m3: "3 · DISABLE" {class: warn; width: 400
+    x_t: "config change to\ndisable the traffic\nsorting optimization" {shape: text; style: {font: mono; font-color: "#C9D4E8"}}
+  }
+  m4: "4 · ROLL BACK\nseparate issue" {class: svc; width: 400
+    x_t: "recent update to the\nmetadata database\nservice" {shape: text; style: {font: mono; font-color: "#C9D4E8"}}
+  }
+}
+
+foot: "only step 1 is explicitly first (\"initially\") · 4 is a separate issue \namber dashed = the record disagrees or has a gap · as the page shows today · \"permanently resolved\" only after the full revert\nnext: 9 Oct → · source: status.cloud.google.com/incidents/mSFVt6PiP557bjRyYsut" {class: note}
+
+**.style.font-size: 36
+**.style.bold: true
+**.x_*.style.font-size: 28
+**.x_*.style.bold: false
+foot.style.font-size: 22
+foot.style.bold: false
